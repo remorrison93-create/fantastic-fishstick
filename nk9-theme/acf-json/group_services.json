@@ -1,0 +1,101 @@
+[
+  {
+    "key": "group_nk9_services",
+    "title": "Service Details",
+    "fields": [
+      {
+        "key": "field_nk9_service_description",
+        "label": "Short Description",
+        "name": "service_description",
+        "type": "textarea",
+        "instructions": "1–2 sentence description shown on the home page services grid card.",
+        "required": 1,
+        "rows": 3
+      },
+      {
+        "key": "field_nk9_service_who",
+        "label": "Who It's For",
+        "name": "service_who_its_for",
+        "type": "textarea",
+        "instructions": "1–2 sentences describing the ideal client for this service.",
+        "required": 0,
+        "rows": 3
+      },
+      {
+        "key": "field_nk9_service_included",
+        "label": "What's Included",
+        "name": "service_included",
+        "type": "repeater",
+        "instructions": "Bullet points listing what's included in this service.",
+        "required": 0,
+        "min": 0,
+        "max": 10,
+        "layout": "table",
+        "button_label": "Add Item",
+        "sub_fields": [
+          {
+            "key": "field_nk9_service_included_item",
+            "label": "Item",
+            "name": "included_item",
+            "type": "text",
+            "required": 0
+          }
+        ]
+      },
+      {
+        "key": "field_nk9_service_results",
+        "label": "Results to Expect",
+        "name": "service_results",
+        "type": "repeater",
+        "instructions": "Outcome-focused bullet points for what clients can expect.",
+        "required": 0,
+        "min": 0,
+        "max": 10,
+        "layout": "table",
+        "button_label": "Add Result",
+        "sub_fields": [
+          {
+            "key": "field_nk9_service_result_item",
+            "label": "Result",
+            "name": "result_item",
+            "type": "text",
+            "required": 0
+          }
+        ]
+      },
+      {
+        "key": "field_nk9_service_cta_label",
+        "label": "CTA Button Label",
+        "name": "service_cta_label",
+        "type": "text",
+        "instructions": "e.g. Apply for Private Lessons",
+        "required": 0,
+        "placeholder": "Apply for Training",
+        "default_value": "Learn More"
+      },
+      {
+        "key": "field_nk9_service_cta_url",
+        "label": "CTA URL",
+        "name": "service_cta_url",
+        "type": "url",
+        "instructions": "Link for the service card CTA. Leave blank to use /contact.",
+        "required": 0
+      }
+    ],
+    "location": [
+      [
+        {
+          "param": "post_type",
+          "operator": "==",
+          "value": "service"
+        }
+      ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "active": true
+  }
+]

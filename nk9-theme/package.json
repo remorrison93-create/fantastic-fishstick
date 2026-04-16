@@ -1,0 +1,12 @@
+{
+  "name": "nk9-theme",
+  "version": "1.0.0",
+  "description": "Nitro K9 custom WordPress theme",
+  "scripts": {
+    "build": "tailwindcss -i ./src/input.css -o ./assets/css/style.css --minify",
+    "dev": "tailwindcss -i ./src/input.css -o ./assets/css/style.css --watch"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.0"
+  }
+}
