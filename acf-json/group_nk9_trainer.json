@@ -1,0 +1,56 @@
+{
+  "key": "group_nk9_trainer",
+  "title": "Trainer Fields",
+  "fields": [
+    {
+      "key": "field_trainer_title",
+      "label": "Job Title",
+      "name": "trainer_title",
+      "type": "text",
+      "instructions": "e.g. Founder & Lead Trainer",
+      "required": 1
+    },
+    {
+      "key": "field_trainer_bio",
+      "label": "Bio",
+      "name": "trainer_bio",
+      "type": "textarea",
+      "instructions": "Full trainer biography. Separate paragraphs with a blank line.",
+      "required": 1,
+      "rows": 6
+    },
+    {
+      "key": "field_trainer_credentials",
+      "label": "Credentials",
+      "name": "trainer_credentials",
+      "type": "repeater",
+      "instructions": "Add one credential per row.",
+      "layout": "block",
+      "button_label": "Add Credential",
+      "sub_fields": [
+        {
+          "key": "field_credential_item",
+          "label": "Credential",
+          "name": "credential_item",
+          "type": "text",
+          "required": 1
+        }
+      ]
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "post_type",
+        "operator": "==",
+        "value": "trainer"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "active": true
+}

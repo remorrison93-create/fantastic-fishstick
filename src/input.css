@@ -1,0 +1,76 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Inter', sans-serif;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-nk-dark text-nk-white;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Bebas Neue', sans-serif;
+  }
+}
+
+@layer components {
+  /* Buttons */
+  .btn-primary {
+    @apply inline-block bg-nk-accent text-white font-body font-semibold uppercase tracking-widest text-sm px-8 py-4 transition-all duration-300 hover:bg-opacity-90 hover:-translate-y-0.5;
+  }
+
+  .btn-secondary {
+    @apply inline-block border border-nk-accent text-nk-accent font-body font-semibold uppercase tracking-widest text-sm px-8 py-4 transition-all duration-300 hover:bg-nk-accent hover:text-white;
+  }
+
+  .btn-light {
+    @apply inline-block bg-white text-nk-dark font-body font-semibold uppercase tracking-widest text-sm px-8 py-4 transition-all duration-300 hover:bg-nk-warm hover:-translate-y-0.5;
+  }
+
+  /* Section label / eyebrow */
+  .section-label {
+    @apply block text-nk-accent font-body font-semibold uppercase tracking-widest-plus text-xs mb-4;
+  }
+
+  .section-label--dark {
+    @apply text-nk-dark;
+  }
+
+  /* Container */
+  .nk-container {
+    @apply max-w-7xl mx-auto px-6 lg:px-12;
+  }
+
+  /* Scroll-reveal base state */
+  .reveal {
+    @apply opacity-0 translate-y-6 transition-all duration-700;
+  }
+
+  .reveal.is-visible {
+    @apply opacity-100 translate-y-0;
+  }
+
+  .reveal-right {
+    @apply opacity-0 translate-x-6 transition-all duration-700;
+  }
+
+  .reveal-right.is-visible {
+    @apply opacity-100 translate-x-0;
+  }
+
+  /* Stagger delays */
+  .delay-100 { transition-delay: 100ms; }
+  .delay-200 { transition-delay: 200ms; }
+  .delay-300 { transition-delay: 300ms; }
+  .delay-400 { transition-delay: 400ms; }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}

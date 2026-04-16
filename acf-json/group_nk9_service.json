@@ -1,0 +1,83 @@
+{
+  "key": "group_nk9_service",
+  "title": "Service Fields",
+  "fields": [
+    {
+      "key": "field_service_who",
+      "label": "Who It's For",
+      "name": "service_who_its_for",
+      "type": "textarea",
+      "instructions": "One or two sentences describing the ideal client for this service.",
+      "required": 1,
+      "rows": 2
+    },
+    {
+      "key": "field_service_included",
+      "label": "What's Included",
+      "name": "service_included",
+      "type": "repeater",
+      "instructions": "Add one included item per row.",
+      "layout": "block",
+      "button_label": "Add Item",
+      "sub_fields": [
+        {
+          "key": "field_included_item",
+          "label": "Item",
+          "name": "included_item",
+          "type": "text",
+          "required": 1
+        }
+      ]
+    },
+    {
+      "key": "field_service_results",
+      "label": "Results Clients Can Expect",
+      "name": "service_results",
+      "type": "repeater",
+      "instructions": "Add one result per row. Write in outcome-focused language.",
+      "layout": "block",
+      "button_label": "Add Result",
+      "sub_fields": [
+        {
+          "key": "field_result_item",
+          "label": "Result",
+          "name": "result_item",
+          "type": "text",
+          "required": 1
+        }
+      ]
+    },
+    {
+      "key": "field_service_cta_label",
+      "label": "CTA Button Label",
+      "name": "service_cta_label",
+      "type": "text",
+      "instructions": "e.g. Apply for Private Lessons",
+      "required": 0,
+      "default_value": "Apply for Training"
+    },
+    {
+      "key": "field_service_cta_url",
+      "label": "CTA Button URL",
+      "name": "service_cta_url",
+      "type": "url",
+      "instructions": "Leave blank to default to /contact",
+      "required": 0
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "post_type",
+        "operator": "==",
+        "value": "service"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "active": true
+}

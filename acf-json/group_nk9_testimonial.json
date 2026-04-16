@@ -1,0 +1,54 @@
+{
+  "key": "group_nk9_testimonial",
+  "title": "Testimonial Fields",
+  "fields": [
+    {
+      "key": "field_testimonial_quote",
+      "label": "Quote",
+      "name": "testimonial_quote",
+      "type": "textarea",
+      "instructions": "The full testimonial text. Do not include quotation marks.",
+      "required": 1,
+      "rows": 4
+    },
+    {
+      "key": "field_testimonial_name",
+      "label": "Client Name",
+      "name": "testimonial_name",
+      "type": "text",
+      "instructions": "e.g. Marcus T.",
+      "required": 1
+    },
+    {
+      "key": "field_testimonial_location",
+      "label": "Location",
+      "name": "testimonial_location",
+      "type": "text",
+      "instructions": "e.g. Dallas, TX",
+      "required": 0
+    },
+    {
+      "key": "field_testimonial_result",
+      "label": "Result Badge",
+      "name": "testimonial_result",
+      "type": "text",
+      "instructions": "Short outcome shown as a badge. e.g. Off-leash reliability in 3 weeks",
+      "required": 0
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "post_type",
+        "operator": "==",
+        "value": "testimonial"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "active": true
+}
