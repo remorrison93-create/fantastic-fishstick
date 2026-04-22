@@ -151,3 +151,183 @@ if (!function_exists('wp_body_open')) {
         do_action('wp_body_open');
     }
 }
+
+// ============================================================
+// SCHEMA MARKUP — STRUCTURED DATA
+// ============================================================
+function nk9_output_schema(): void {
+
+    // LocalBusiness schema — outputs on every page
+    $local_business = [
+        '@context'        => 'https://schema.org',
+        '@type'           => 'LocalBusiness',
+        'name'            => 'Nitro K9',
+        'alternateName'   => 'NK9',
+        'description'     => 'Professional dog training in the Dallas–Fort Worth area. Specializing in private lessons, board & train, and in-home behavior modification.',
+        'url'             => home_url('/'),
+        'telephone'       => '+10000000000',
+        'email'           => 'info@nitrok9.com',
+        'priceRange'      => '$$',
+        'address'         => [
+            '@type'           => 'PostalAddress',
+            'addressLocality' => 'Dallas',
+            'addressRegion'   => 'TX',
+            'addressCountry'  => 'US',
+        ],
+        'areaServed'      => [
+            ['@type' => 'City', 'name' => 'Dallas'],
+            ['@type' => 'City', 'name' => 'Plano'],
+            ['@type' => 'City', 'name' => 'Frisco'],
+            ['@type' => 'City', 'name' => 'McKinney'],
+            ['@type' => 'City', 'name' => 'Allen'],
+        ],
+        'sameAs'          => [
+            'https://www.instagram.com/nitrok9',
+            'https://www.facebook.com/nitrok9',
+        ],
+        'hasOfferCatalog' => [
+            '@type' => 'OfferCatalog',
+            'name'  => 'Dog Training Services',
+            'itemListElement' => [
+                [
+                    '@type'       => 'Offer',
+                    'itemOffered' => [
+                        '@type'       => 'Service',
+                        'name'        => 'Private Dog Training Lessons',
+                        'description' => 'One-on-one sessions focused on your specific issues. You and your dog learn together.',
+                    ],
+                ],
+                [
+                    '@type'       => 'Offer',
+                    'itemOffered' => [
+                        '@type'       => 'Service',
+                        'name'        => 'Board and Train Program',
+                        'description' => 'Your dog lives and trains with us for 2–4 weeks. Maximum results, minimum disruption to your schedule.',
+                    ],
+                ],
+                [
+                    '@type'       => 'Offer',
+                    'itemOffered' => [
+                        '@type'       => 'Service',
+                        'name'        => 'In-Home Dog Training',
+                        'description' => 'We come to you and address behavior problems in the exact environment where they happen.',
+                    ],
+                ],
+            ],
+        ],
+    ];
+
+    echo '<script type="application/ld+json">' . wp_json_encode($local_business, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) . '</script>' . "\n";
+
+    // Services page — additional Service schema
+    if (is_page('services')) {
+        $services_schema = [
+            '@context' => 'https://schema.org',
+            '@type'    => 'ItemList',
+            'name'     => 'NK9 Dog Training Services',
+            'itemListElement' => [
+                [
+                    '@type'    => 'ListItem',
+                    'position' => 1,
+                    'item'     => [
+                        '@type'       => 'Service',
+                        'name'        => 'Private Dog Training Lessons',
+                        'provider'    => ['@type' => 'LocalBusiness', 'name' => 'Nitro K9'],
+                        'description' => 'One-on-one sessions focused on your specific issues. Leash manners, recall, impulse control, reactivity. Owner education included.',
+                        'areaServed'  => 'Dallas–Fort Worth, TX',
+                    ],
+                ],
+                [
+                    '@type'    => 'ListItem',
+                    'position' => 2,
+                    'item'     => [
+                        '@type'       => 'Service',
+                        'name'        => 'Board and Train Dog Program',
+                        'provider'    => ['@type' => 'LocalBusiness', 'name' => 'Nitro K9'],
+                        'description' => '2–4 week residential training program. Daily structured sessions, real-world exposure, daily updates, and owner transfer session.',
+                        'areaServed'  => 'Dallas–Fort Worth, TX',
+                    ],
+                ],
+                [
+                    '@type'    => 'ListItem',
+                    'position' => 3,
+                    'item'     => [
+                        '@type'       => 'Service',
+                        'name'        => 'In-Home Dog Training',
+                        'provider'    => ['@type' => 'LocalBusiness', 'name' => 'Nitro K9'],
+                        'description' => 'Sessions in your home targeting jumping, resource guarding, territorial aggression, and door bolting.',
+                        'areaServed'  => 'Dallas–Fort Worth, TX',
+                    ],
+                ],
+            ],
+        ];
+
+        echo '<script type="application/ld+json">' . wp_json_encode($services_schema, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) . '</script>' . "\n";
+    }
+
+    // Trainers page — Person schema for Steve
+    if (is_page('trainers')) {
+        $trainer_schema = [
+            '@context'  => 'https://schema.org',
+            '@type'     => 'Person',
+            'name'      => 'Steve Walter',
+            'jobTitle'  => 'Founder & Lead Trainer',
+            'worksFor'  => ['@type' => 'LocalBusiness', 'name' => 'Nitro K9'],
+            'url'       => home_url('/trainers'),
+            'knowsAbout' => [
+                'Dog Training',
+                'Balanced Training',
+                'Board and Train',
+                'Aggression Rehabilitation',
+                'Obedience Training',
+            ],
+        ];
+
+        echo '<script type="application/ld+json">' . wp_json_encode($trainer_schema, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) . '</script>' . "\n";
+    }
+
+    // Contact page — FAQPage schema
+    if (is_page('contact')) {
+        $faq_schema = [
+            '@context'   => 'https://schema.org',
+            '@type'      => 'FAQPage',
+            'mainEntity' => [
+                [
+                    '@type'          => 'Question',
+                    'name'           => 'How do I get started with NK9 dog training?',
+                    'acceptedAnswer' => [
+                        '@type' => 'Answer',
+                        'text'  => 'Fill out our application form. We review every application personally and respond within 24 hours with next steps.',
+                    ],
+                ],
+                [
+                    '@type'          => 'Question',
+                    'name'           => 'What dog training programs does NK9 offer?',
+                    'acceptedAnswer' => [
+                        '@type' => 'Answer',
+                        'text'  => 'NK9 offers Private Lessons, Board & Train (2–4 week residential program), and In-Home Visits for behavior issues in your home environment.',
+                    ],
+                ],
+                [
+                    '@type'          => 'Question',
+                    'name'           => 'What areas does NK9 serve?',
+                    'acceptedAnswer' => [
+                        '@type' => 'Answer',
+                        'text'  => 'NK9 serves the Dallas–Fort Worth area including Dallas, Plano, Frisco, McKinney, and Allen, TX.',
+                    ],
+                ],
+                [
+                    '@type'          => 'Question',
+                    'name'           => 'What is balanced dog training?',
+                    'acceptedAnswer' => [
+                        '@type' => 'Answer',
+                        'text'  => 'Balanced training uses both positive reinforcement and appropriate corrections to clearly communicate expectations to your dog. It is the same method used by professional working dog programs worldwide.',
+                    ],
+                ],
+            ],
+        ];
+
+        echo '<script type="application/ld+json">' . wp_json_encode($faq_schema, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) . '</script>' . "\n";
+    }
+}
+add_action('wp_head', 'nk9_output_schema');
