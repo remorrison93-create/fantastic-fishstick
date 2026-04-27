@@ -42,6 +42,83 @@
             "placeholder": "e.g. 10+ Years Professional Dog Training"
           }
         ]
+      },
+      {
+        "key": "field_nk9_trainer_gallery",
+        "label": "Photo Gallery",
+        "name": "trainer_gallery",
+        "type": "gallery",
+        "instructions": "Upload photos for the trainer's profile gallery. Action shots, training photos, etc.",
+        "required": 0,
+        "min": 0,
+        "max": 12,
+        "preview_size": "medium",
+        "insert": "append",
+        "library": "all",
+        "return_format": "array"
+      },
+      {
+        "key": "field_nk9_trainer_dogs",
+        "label": "My Dogs",
+        "name": "trainer_dogs",
+        "type": "repeater",
+        "instructions": "Add each of the trainer's dogs.",
+        "required": 0,
+        "min": 0,
+        "max": 8,
+        "layout": "block",
+        "button_label": "Add Dog",
+        "sub_fields": [
+          {
+            "key": "field_nk9_trainer_dog_photo",
+            "label": "Photo",
+            "name": "dog_photo",
+            "type": "image",
+            "instructions": "Square photo works best — will be displayed as a circle avatar.",
+            "required": 0,
+            "return_format": "array",
+            "preview_size": "thumbnail",
+            "library": "all"
+          },
+          {
+            "key": "field_nk9_trainer_dog_name",
+            "label": "Name",
+            "name": "dog_name",
+            "type": "text",
+            "required": 1,
+            "placeholder": "e.g. Rex"
+          },
+          {
+            "key": "field_nk9_trainer_dog_breed",
+            "label": "Breed",
+            "name": "dog_breed",
+            "type": "text",
+            "required": 0,
+            "placeholder": "e.g. Belgian Malinois"
+          }
+        ]
+      },
+      {
+        "key": "field_nk9_trainer_fun_facts",
+        "label": "Fun Facts",
+        "name": "trainer_fun_facts",
+        "type": "repeater",
+        "instructions": "Add fun or personal facts about the trainer. Keep them short and punchy.",
+        "required": 0,
+        "min": 0,
+        "max": 8,
+        "layout": "table",
+        "button_label": "Add Fun Fact",
+        "sub_fields": [
+          {
+            "key": "field_nk9_trainer_fun_fact_text",
+            "label": "Fun Fact",
+            "name": "fun_fact_text",
+            "type": "text",
+            "required": 0,
+            "placeholder": "e.g. Has trained dogs in 3 different countries"
+          }
+        ]
       }
     ],
     "location": [
