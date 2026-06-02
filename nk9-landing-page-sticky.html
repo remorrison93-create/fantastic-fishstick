@@ -13,7 +13,9 @@
 <style>
 /* ============================================================
    NK9 LANDING PAGE — STICKY SCROLL HERO
-   Scoped to #nk9lp to prevent WordPress theme conflicts
+   Scoped to #nk9lp to prevent WordPress theme conflicts.
+   Uses JS-driven position:fixed for sticky (bypasses WordPress
+   parent overflow:hidden that breaks CSS position:sticky).
    ============================================================ */
 #nk9lp *, #nk9lp *::before, #nk9lp *::after {
   box-sizing: border-box;
@@ -32,22 +34,26 @@
 
 /* ============================================================
    STICKY SCROLL SECTION
-   500vh = 100vh viewport + 400vh scroll travel (4 stages × 100vh)
+   500vh outer reserves scroll travel. JS manages inner position.
    ============================================================ */
 #lp-sticky-wrap {
   height: 500vh;
   position: relative;
 }
 
+/* Inner starts absolute; JS transitions it to fixed while in zone */
 #lp-sticky-inner {
-  position: sticky;
+  position: absolute;
   top: 0;
+  left: 0;
+  width: 100%;
   height: 100vh;
   overflow: hidden;
+  background: #272727;
 }
 
 /* ============================================================
-   HERO BACKDROP — always visible as long as sticky is active
+   HERO BACKDROP
    ============================================================ */
 #lp-hero {
   position: absolute;
@@ -62,7 +68,6 @@
   z-index: 1;
 }
 
-/* large watermark */
 #lp-hero::before {
   content: 'NK9';
   position: absolute;
@@ -160,11 +165,11 @@
   padding: 15px 32px;
   border: 1px solid rgba(255,255,255,0.28);
   display: inline-block;
-  transition: border-color 0.2s, color 0.2s;
+  transition: border-color 0.2s;
 }
 #nk9lp .lp-btn-outline:hover { border-color: rgba(255,255,255,0.6); }
 
-/* scroll cue */
+/* Scroll cue */
 #lp-scroll-cue {
   position: absolute;
   bottom: 90px;
@@ -176,7 +181,7 @@
   gap: 8px;
   opacity: 0;
   animation: lp-rise 0.55s ease forwards 1.3s;
-  transition: opacity 0.5s ease;
+  transition: opacity 0.4s ease;
   z-index: 10;
   pointer-events: none;
 }
@@ -214,7 +219,6 @@
   padding: 13px 0;
   overflow: hidden;
   z-index: 30;
-  flex-shrink: 0;
 }
 
 .lp-marquee-track {
@@ -244,7 +248,7 @@
 }
 
 /* ============================================================
-   PROGRAM PANELS — absolute, stack over the hero
+   PROGRAM PANELS
    ============================================================ */
 .lp-prog-panel {
   position: absolute;
@@ -253,7 +257,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 24px 32px 96px; /* 96px bottom clears the marquee */
+  padding: 24px 32px 96px;
   opacity: 0;
   pointer-events: none;
   transform: translateY(20px);
@@ -266,21 +270,19 @@
   transform: translateY(0);
 }
 
-/* Gradient overlay dims the hero backdrop behind the card */
 .lp-prog-panel::before {
   content: '';
   position: absolute;
   inset: 0;
   background: linear-gradient(
     160deg,
-    rgba(39,39,39,0.55) 0%,
-    rgba(39,39,39,0.82) 50%,
-    rgba(39,39,39,0.96) 100%
+    rgba(39,39,39,0.5) 0%,
+    rgba(39,39,39,0.85) 55%,
+    rgba(39,39,39,0.97) 100%
   );
   z-index: 0;
 }
 
-/* ---- PROGRAM CARD ---- */
 .lp-prog-card {
   position: relative;
   z-index: 2;
@@ -289,7 +291,6 @@
   text-align: center;
 }
 
-/* Giant ghost number behind the card */
 .lp-prog-ghost {
   font-family: 'Bebas Neue', 'Arial Narrow', Arial, sans-serif;
   font-size: clamp(140px, 28vw, 260px);
@@ -367,10 +368,8 @@
 .lp-prog-cta:hover { background: #d44a1e; }
 
 /* ============================================================
-   SIDE INDICATORS
+   INDICATORS (desktop only)
    ============================================================ */
-
-/* Vertical dots — right edge */
 #lp-prog-dots {
   position: absolute;
   right: 24px;
@@ -383,8 +382,7 @@
   opacity: 0;
   transition: opacity 0.4s ease;
 }
-
-#lp-prog-dots.visible { opacity: 1; }
+#lp-prog-dots.lp-visible { opacity: 1; }
 
 .lp-dot {
   width: 5px;
@@ -393,13 +391,11 @@
   background: rgba(255,255,255,0.2);
   transition: background 0.35s, transform 0.35s;
 }
-
 .lp-dot.lp-dot-active {
   background: #f1592a;
   transform: scale(1.8);
 }
 
-/* Counter label — left edge, above marquee */
 #lp-prog-label {
   position: absolute;
   left: 24px;
@@ -412,8 +408,7 @@
   opacity: 0;
   transition: opacity 0.4s ease;
 }
-
-#lp-prog-label.visible { opacity: 1; }
+#lp-prog-label.lp-visible { opacity: 1; }
 
 /* ============================================================
    KEYFRAMES
@@ -431,10 +426,7 @@
   padding: 100px 24px;
 }
 
-#nk9lp .lp-section-wrap {
-  max-width: 1060px;
-  margin: 0 auto;
-}
+#nk9lp .lp-section-wrap { max-width: 1060px; margin: 0 auto; }
 
 #nk9lp .lp-section-label {
   font-size: 10px;
@@ -466,7 +458,6 @@
   font-size: 16px;
   line-height: 1.85;
 }
-
 .lp-method-intro strong { color: #fff; }
 
 .lp-method-note {
@@ -481,7 +472,6 @@
   border-collapse: collapse;
   font-size: 13px;
 }
-
 .lp-method-table th {
   padding: 10px 16px;
   text-align: left;
@@ -490,20 +480,19 @@
   text-transform: uppercase;
   font-weight: 600;
   border-bottom: 1px solid rgba(255,255,255,0.1);
+  background: transparent;
+  color: rgba(255,255,255,0.35);
 }
-
-.lp-method-table th:first-child { color: rgba(255,255,255,0.35); }
-.lp-method-table th:last-child  { color: #f1592a; }
-
+.lp-method-table th:last-child { color: #f1592a; }
 .lp-method-table td {
   padding: 13px 16px;
   border-bottom: 1px solid rgba(255,255,255,0.05);
   vertical-align: top;
   line-height: 1.5;
+  background: transparent;
+  color: rgba(255,255,255,0.38);
 }
-
-.lp-method-table td:first-child { color: rgba(255,255,255,0.38); }
-.lp-method-table td:last-child  { color: rgba(255,255,255,0.82); }
+.lp-method-table td:last-child { color: rgba(255,255,255,0.82); }
 
 /* ============================================================
    STATS BAR
@@ -529,7 +518,6 @@
   color: #272727;
   letter-spacing: 1px;
 }
-
 .lp-stat-label {
   font-size: 10px;
   letter-spacing: 2.5px;
@@ -557,13 +545,11 @@
   color: #fff;
   margin-bottom: 14px;
 }
-
 .lp-apply-sub {
   font-size: 16px;
   color: rgba(255,255,255,0.45);
   margin-bottom: 44px;
 }
-
 .lp-apply-fine {
   margin-top: 20px;
   font-size: 11px;
@@ -572,7 +558,7 @@
 }
 
 /* ============================================================
-   SCROLL REVEAL (sections below the sticky)
+   SCROLL REVEAL
    ============================================================ */
 #nk9lp .lp-reveal {
   opacity: 0;
@@ -585,60 +571,55 @@
 }
 
 /* ============================================================
-   RESPONSIVE — Mobile: disable sticky, stack panels
+   MOBILE — stack panels as normal sections, no sticky
    ============================================================ */
 @media (max-width: 768px) {
-  /* Kill the sticky scroll — turn into normal stacked sections */
-  #lp-sticky-wrap  { height: auto; }
-  #lp-sticky-inner { position: relative; height: auto; overflow: visible; }
+  #lp-sticky-wrap  { height: auto !important; }
 
-  /* Hero as a standalone full-height section */
+  /* Inner becomes a normal flow element on mobile */
+  #lp-sticky-inner {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    width: 100% !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  /* Hero is its own full-height section */
   #lp-hero {
     position: relative;
     height: 100svh;
     min-height: 580px;
   }
 
-  /* Each program panel becomes a normal section */
+  /* Marquee anchors to the hero bottom */
+  #lp-marquee { position: absolute; bottom: 0; }
+
+  /* Every program panel shows as a standalone section */
   .lp-prog-panel {
-    position: relative;
-    inset: auto;
+    position: relative !important;
+    inset: auto !important;
     opacity: 1 !important;
     transform: none !important;
-    pointer-events: auto;
+    pointer-events: auto !important;
     padding: 72px 24px 64px;
-    height: auto;
+    height: auto !important;
   }
 
-  .lp-prog-panel::before { display: none; } /* no gradient overlay on mobile */
+  .lp-prog-panel::before { display: none; }
 
   #lp-prog-sd { background: #1e1e1e; }
   #lp-prog-ob { background: #232321; }
   #lp-prog-pr { background: #1a1a1a; }
 
   .lp-prog-ghost { display: none; }
+  #lp-prog-dots, #lp-prog-label, #lp-scroll-cue { display: none !important; }
 
-  /* Marquee inside hero only on mobile */
-  #lp-marquee {
-    position: absolute;
-    bottom: 0;
-  }
-
-  /* Hide desktop nav indicators */
-  #lp-prog-dots, #lp-prog-label, #lp-scroll-cue { display: none; }
-
-  /* Method grid stacks */
   .lp-method-grid { grid-template-columns: 1fr; gap: 32px; }
-
-  /* Stats 2-col on mobile */
-  .lp-stats-grid { grid-template-columns: repeat(2, 1fr); gap: 32px; }
-
-  /* Badges wrap tightly */
+  .lp-stats-grid  { grid-template-columns: repeat(2, 1fr); gap: 32px; }
   .lp-prog-badges { gap: 8px; }
   .lp-prog-badge  { font-size: 10px; padding: 6px 11px; }
-
-  /* Method table scrolls horizontally on tiny screens */
-  .lp-method-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
 }
 
 @media (max-width: 480px) {
@@ -648,19 +629,18 @@
 }
 </style>
 
-<!-- ============================================================
+<!-- ================================================================
      NK9 LANDING PAGE HTML
-     ============================================================ -->
+     ================================================================ -->
 <div id="nk9lp">
 
-  <!-- ── STICKY SCROLL SECTION ──────────────────────────────────────
-       500vh outer height: user scrolls 400vh across 4 stages (hero +
-       Service Dog + Obedience + Protection). Inner div stays pinned.
-  ──────────────────────────────────────────────────────────────── -->
+  <!-- STICKY SCROLL SECTION
+       JS pins #lp-sticky-inner to the viewport while the user scrolls
+       through the 500vh wrapper. Program panels reveal in sequence.  -->
   <div id="lp-sticky-wrap">
     <div id="lp-sticky-inner">
 
-      <!-- HERO BACKDROP -->
+      <!-- HERO BACKDROP (always visible while sticky is active) -->
       <div id="lp-hero">
         <p class="lp-eyebrow">Nitro K9 · Bothell, WA</p>
         <h1 class="lp-headline">
@@ -678,9 +658,8 @@
           <div class="lp-scroll-arrow"></div>
         </div>
       </div>
-      <!-- /hero -->
 
-      <!-- ── PROGRAM PANEL 1: SERVICE DOG ──────────────────────── -->
+      <!-- PROGRAM PANEL 1: SERVICE DOG -->
       <div class="lp-prog-panel" id="lp-prog-sd">
         <div class="lp-prog-card">
           <div class="lp-prog-ghost" aria-hidden="true">01</div>
@@ -697,7 +676,7 @@
         </div>
       </div>
 
-      <!-- ── PROGRAM PANEL 2: OBEDIENCE ────────────────────────── -->
+      <!-- PROGRAM PANEL 2: OBEDIENCE -->
       <div class="lp-prog-panel" id="lp-prog-ob">
         <div class="lp-prog-card">
           <div class="lp-prog-ghost" aria-hidden="true">02</div>
@@ -714,7 +693,7 @@
         </div>
       </div>
 
-      <!-- ── PROGRAM PANEL 3: PROTECTION ───────────────────────── -->
+      <!-- PROGRAM PANEL 3: PROTECTION -->
       <div class="lp-prog-panel" id="lp-prog-pr">
         <div class="lp-prog-card">
           <div class="lp-prog-ghost" aria-hidden="true">03</div>
@@ -731,14 +710,13 @@
         </div>
       </div>
 
-      <!-- Side dot navigation (desktop only) -->
+      <!-- Side dots (desktop only) -->
       <div id="lp-prog-dots">
-        <div class="lp-dot" id="lp-dot-0" title="Service Dog"></div>
-        <div class="lp-dot" id="lp-dot-1" title="Obedience"></div>
-        <div class="lp-dot" id="lp-dot-2" title="Protection"></div>
+        <div class="lp-dot" id="lp-dot-0"></div>
+        <div class="lp-dot" id="lp-dot-1"></div>
+        <div class="lp-dot" id="lp-dot-2"></div>
       </div>
 
-      <!-- Counter label (desktop only) -->
       <div id="lp-prog-label">
         <span id="lp-prog-counter">01 / 03</span>
       </div>
@@ -761,12 +739,10 @@
         </div>
       </div>
 
-    </div>
-    <!-- /sticky inner -->
-  </div>
-  <!-- /sticky wrap -->
+    </div><!-- /sticky inner -->
+  </div><!-- /sticky wrap -->
 
-  <!-- ── METHOD SECTION ───────────────────────────────────────────── -->
+  <!-- METHOD -->
   <section id="lp-method">
     <div class="lp-section-wrap lp-reveal">
       <p class="lp-section-label">The NK9 Method</p>
@@ -776,7 +752,7 @@
           <p class="lp-method-intro">Most trainers reach for food. We never do. At Nitro K9, we build obedience through <strong>relationship, drive, and consequence</strong> — which means when your dog listens, it's because they want to. Not because they're waiting for a treat.</p>
           <p class="lp-method-note">This approach requires more skill, more time, and more commitment from both dog and handler. It also produces more reliable results in high-distraction, real-world environments.</p>
         </div>
-        <div class="lp-method-table-wrap">
+        <div>
           <table class="lp-method-table">
             <thead>
               <tr>
@@ -797,7 +773,7 @@
     </div>
   </section>
 
-  <!-- ── STATS BAR ─────────────────────────────────────────────────── -->
+  <!-- STATS -->
   <section id="lp-stats">
     <div class="lp-stats-grid lp-reveal">
       <div>
@@ -819,7 +795,7 @@
     </div>
   </section>
 
-  <!-- ── APPLY CTA ─────────────────────────────────────────────────── -->
+  <!-- APPLY -->
   <section id="lp-apply">
     <div class="lp-section-wrap lp-reveal" style="text-align:center;">
       <p class="lp-section-label">Ready to Start</p>
@@ -830,143 +806,200 @@
     </div>
   </section>
 
-</div>
-<!-- /nk9lp -->
+</div><!-- /nk9lp -->
 
 <script>
 (function () {
   'use strict';
 
-  /* ────────────────────────────────────────────────────────────────
-     STICKY SCROLL — PROGRAM PANEL SWITCHER
-     Disabled on mobile (≤768px) where panels stack normally.
-  ──────────────────────────────────────────────────────────────── */
-  var stickyWrap  = document.getElementById('lp-sticky-wrap');
-  var scrollCue   = document.getElementById('lp-scroll-cue');
-  var progDots    = document.getElementById('lp-prog-dots');
-  var progLabel   = document.getElementById('lp-prog-label');
-  var progCounter = document.getElementById('lp-prog-counter');
+  /* ================================================================
+     JS-DRIVEN STICKY — works even when WordPress parent has
+     overflow:hidden (which breaks CSS position:sticky).
+
+     Strategy:
+       • #lp-sticky-wrap is 500vh tall — reserves the scroll space
+       • #lp-sticky-inner starts position:absolute; top:0
+       • While user scrolls THROUGH the wrapper, we switch inner
+         to position:fixed so it stays glued to the top of the screen
+       • Once past the wrapper, inner goes back to absolute at the bottom
+     ================================================================ */
+
+  var wrap    = document.getElementById('lp-sticky-wrap');
+  var inner   = document.getElementById('lp-sticky-inner');
+  var cue     = document.getElementById('lp-scroll-cue');
+  var dots    = document.getElementById('lp-prog-dots');
+  var label   = document.getElementById('lp-prog-label');
+  var counter = document.getElementById('lp-prog-counter');
 
   var panels = [
     document.getElementById('lp-prog-sd'),
     document.getElementById('lp-prog-ob'),
-    document.getElementById('lp-prog-pr'),
+    document.getElementById('lp-prog-pr')
   ];
-
-  var dots = [
+  var dotEls = [
     document.getElementById('lp-dot-0'),
     document.getElementById('lp-dot-1'),
-    document.getElementById('lp-dot-2'),
+    document.getElementById('lp-dot-2')
   ];
 
-  var COUNTER_LABELS = ['01 / 03', '02 / 03', '03 / 03'];
-  var activeIdx = -2; // force first run
+  var LABELS = ['01 / 03', '02 / 03', '03 / 03'];
+  var activePanel = -2; // -2 forces initial render
 
+  /* Cached measurements — refreshed on load + resize */
+  var wrapPageTop = 0; // wrapper's distance from page top (px)
+  var maxScroll   = 0; // scrollable distance inside wrapper (px)
+
+  function measure() {
+    /* getBoundingClientRect().top + scrollY = distance from page origin.
+       Measured with inner as absolute so layout is stable. */
+    var rect  = wrap.getBoundingClientRect();
+    wrapPageTop = rect.top + window.pageYOffset;
+    maxScroll   = wrap.offsetHeight - window.innerHeight; // 400vh in px
+  }
+
+  /* ---- Panel switcher ---- */
   function showPanel(idx) {
-    if (idx === activeIdx) return;
-    activeIdx = idx;
+    if (idx === activePanel) return;
+    activePanel = idx;
 
-    panels.forEach(function (panel, i) {
-      panel.classList.toggle('lp-active', i === idx);
+    panels.forEach(function (p, i) {
+      p.classList.toggle('lp-active', i === idx);
     });
-
-    dots.forEach(function (dot, i) {
-      dot.classList.toggle('lp-dot-active', i === idx);
+    dotEls.forEach(function (d, i) {
+      d.classList.toggle('lp-dot-active', i === idx);
     });
 
     if (idx >= 0) {
-      // A program panel is showing
-      progDots.classList.add('visible');
-      progLabel.classList.add('visible');
-      progCounter.textContent = COUNTER_LABELS[idx];
-      scrollCue.style.opacity = '0';
+      dots.classList.add('lp-visible');
+      label.classList.add('lp-visible');
+      counter.textContent = LABELS[idx];
+      if (cue) cue.style.opacity = '0';
     } else {
-      // Hero only
-      progDots.classList.remove('visible');
-      progLabel.classList.remove('visible');
-      scrollCue.style.opacity = ''; // reset to CSS animation value
+      dots.classList.remove('lp-visible');
+      label.classList.remove('lp-visible');
+      if (cue) cue.style.opacity = '';
     }
   }
 
-  function onScroll() {
-    var rect        = stickyWrap.getBoundingClientRect();
-    var totalScroll = stickyWrap.offsetHeight - window.innerHeight; // 400vh
-    var scrolled    = -rect.top; // px scrolled into the sticky section
-
-    // Outside the sticky zone entirely
-    if (scrolled <= 0 || totalScroll <= 0) { showPanel(-1); return; }
-    if (scrolled >= totalScroll)            { showPanel(-1); return; }
-
-    var progress = scrolled / totalScroll; // 0 → 1 across the 400vh range
-
-    /*  Zone map (equal quarters):
-        0.00 – 0.25 → hero only
-        0.25 – 0.50 → Service Dog
-        0.50 – 0.75 → Obedience
-        0.75 – 1.00 → Protection                          */
-    if      (progress < 0.25) showPanel(-1);
-    else if (progress < 0.50) showPanel(0);
-    else if (progress < 0.75) showPanel(1);
-    else                      showPanel(2);
+  /* ---- Sticky positioning ---- */
+  function pin() {
+    /* position:fixed + full width so it always covers the viewport
+       regardless of how WordPress has constrained the content column. */
+    inner.style.cssText =
+      'position:fixed;top:0;left:0;width:100%;height:100vh;overflow:hidden;background:#272727;z-index:500;';
   }
 
+  function unpin(absTop) {
+    inner.style.cssText =
+      'position:absolute;top:' + absTop + 'px;left:0;width:100%;height:100vh;overflow:hidden;background:#272727;';
+  }
+
+  /* ---- Main scroll handler ---- */
+  function update() {
+    var scrolledIn = window.pageYOffset - wrapPageTop;
+
+    /* — Above the section — */
+    if (scrolledIn <= 0) {
+      unpin(0);
+      showPanel(-1);
+      return;
+    }
+
+    /* — Past the section — */
+    if (scrolledIn >= maxScroll) {
+      unpin(maxScroll);
+      showPanel(-1);
+      return;
+    }
+
+    /* — Inside sticky zone — fix to viewport — */
+    pin();
+
+    /*  Progress zones (4 equal quarters of maxScroll):
+        0.00–0.25 → hero only
+        0.25–0.50 → Service Dog
+        0.50–0.75 → Obedience
+        0.75–1.00 → Protection                             */
+    var p = scrolledIn / maxScroll;
+    if      (p < 0.25) showPanel(-1);
+    else if (p < 0.50) showPanel(0);
+    else if (p < 0.75) showPanel(1);
+    else               showPanel(2);
+  }
+
+  /* ---- Mobile check — skip sticky on small screens ---- */
   function isMobile() { return window.innerWidth <= 768; }
 
-  if (!isMobile() && stickyWrap) {
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll(); // initial state
+  /* ---- Init ---- */
+  if (!isMobile() && wrap && inner) {
+    measure();
+    update();
+    window.addEventListener('scroll', update, { passive: true });
+
+    var resizeTimer;
+    window.addEventListener('resize', function () {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(function () {
+        if (isMobile()) {
+          /* Reset any JS-applied styles so mobile CSS takes over */
+          inner.style.cssText = '';
+          showPanel(-1);
+        } else {
+          measure();
+          update();
+        }
+      }, 120);
+    });
+
+    /* Re-measure after fonts/images load (may shift layout) */
+    window.addEventListener('load', function () {
+      measure();
+      update();
+    });
   }
 
-  // Re-check if viewport resizes past breakpoint
-  window.addEventListener('resize', function () {
-    if (isMobile()) {
-      window.removeEventListener('scroll', onScroll);
-    }
-  });
-
-  /* ────────────────────────────────────────────────────────────────
-     SCROLL REVEAL — sections below the sticky
-  ──────────────────────────────────────────────────────────────── */
+  /* ================================================================
+     SCROLL REVEAL — sections below the sticky section
+     ================================================================ */
   var reveals = document.querySelectorAll('#nk9lp .lp-reveal');
 
   if ('IntersectionObserver' in window) {
-    var revealObs = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('lp-visible');
-          revealObs.unobserve(entry.target);
+    var revObs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('lp-visible');
+          revObs.unobserve(e.target);
         }
       });
     }, { threshold: 0.12 });
-
-    reveals.forEach(function (el) { revealObs.observe(el); });
+    reveals.forEach(function (el) { revObs.observe(el); });
   } else {
     reveals.forEach(function (el) { el.classList.add('lp-visible'); });
   }
 
-  /* ────────────────────────────────────────────────────────────────
+  /* ================================================================
      COUNT-UP ANIMATION
-  ──────────────────────────────────────────────────────────────── */
-  var counters = document.querySelectorAll('#nk9lp .lp-stat-num[data-count]');
+     ================================================================ */
+  var statEls = document.querySelectorAll('#nk9lp .lp-stat-num[data-count]');
 
-  var countObs = new IntersectionObserver(function (entries) {
-    entries.forEach(function (entry) {
-      if (!entry.isIntersecting) return;
-      var el       = entry.target;
-      var target   = parseFloat(el.dataset.count);
-      var suffix   = el.dataset.suffix || '';
-      var decimal  = String(target).indexOf('.') !== -1;
-      var duration = 1600;
-      var startTime = null;
+  var cntObs = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      var el      = e.target;
+      var target  = parseFloat(el.dataset.count);
+      var suffix  = el.dataset.suffix || '';
+      var decimal = String(target).indexOf('.') !== -1;
+      var dur     = 1600;
+      var t0      = null;
 
       function tick(now) {
-        if (!startTime) startTime = now;
-        var elapsed = now - startTime;
-        var t       = Math.min(elapsed / duration, 1);
-        var ease    = 1 - Math.pow(1 - t, 3); // ease-out cubic
-        var current = target * ease;
+        if (!t0) t0 = now;
+        var elapsed = now - t0;
+        var t       = Math.min(elapsed / dur, 1);
+        var ease    = 1 - Math.pow(1 - t, 3);
+        var val     = target * ease;
 
-        el.textContent = (decimal ? current.toFixed(1) : Math.floor(current)) + suffix;
+        el.textContent = (decimal ? val.toFixed(1) : Math.floor(val)) + suffix;
 
         if (t < 1) {
           requestAnimationFrame(tick);
@@ -976,11 +1009,11 @@
       }
 
       requestAnimationFrame(tick);
-      countObs.unobserve(el);
+      cntObs.unobserve(el);
     });
   }, { threshold: 0.3 });
 
-  counters.forEach(function (el) { countObs.observe(el); });
+  statEls.forEach(function (el) { cntObs.observe(el); });
 
 })();
 </script>
