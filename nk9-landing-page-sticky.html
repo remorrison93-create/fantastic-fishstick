@@ -1,0 +1,986 @@
+<!--
+  NK9 LANDING PAGE — STICKY SCROLL HERO
+  Copy-paste into WordPress Custom HTML block.
+  Requires: Google Fonts (Bebas Neue + Inter) already loaded by theme.
+  If not loaded, uncomment the <link> tag below.
+-->
+
+<!--
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap">
+-->
+
+<style>
+/* ============================================================
+   NK9 LANDING PAGE — STICKY SCROLL HERO
+   Scoped to #nk9lp to prevent WordPress theme conflicts
+   ============================================================ */
+#nk9lp *, #nk9lp *::before, #nk9lp *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+#nk9lp {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  color: #ffffff;
+  background: #272727;
+  overflow-x: hidden;
+}
+
+#nk9lp a { text-decoration: none; color: inherit; }
+
+/* ============================================================
+   STICKY SCROLL SECTION
+   500vh = 100vh viewport + 400vh scroll travel (4 stages × 100vh)
+   ============================================================ */
+#lp-sticky-wrap {
+  height: 500vh;
+  position: relative;
+}
+
+#lp-sticky-inner {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* ============================================================
+   HERO BACKDROP — always visible as long as sticky is active
+   ============================================================ */
+#lp-hero {
+  position: absolute;
+  inset: 0;
+  background: #272727;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 24px 80px;
+  text-align: center;
+  z-index: 1;
+}
+
+/* large watermark */
+#lp-hero::before {
+  content: 'NK9';
+  position: absolute;
+  font-family: 'Bebas Neue', 'Arial Narrow', Arial, sans-serif;
+  font-size: clamp(160px, 38vw, 400px);
+  color: rgba(241, 89, 42, 0.055);
+  letter-spacing: -4px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -55%);
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+  white-space: nowrap;
+}
+
+#nk9lp .lp-eyebrow {
+  font-size: 11px;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  color: #f1592a;
+  font-weight: 600;
+  margin-bottom: 20px;
+  opacity: 0;
+  animation: lp-rise 0.55s ease forwards 0.2s;
+  position: relative;
+  z-index: 2;
+}
+
+#nk9lp .lp-headline {
+  font-family: 'Bebas Neue', 'Arial Narrow', Arial, sans-serif;
+  font-size: clamp(64px, 13vw, 148px);
+  line-height: 0.88;
+  letter-spacing: 2px;
+  color: #ffffff;
+  margin-bottom: 28px;
+  position: relative;
+  z-index: 2;
+}
+
+#nk9lp .lp-headline .hero-line {
+  display: block;
+  opacity: 0;
+  animation: lp-rise 0.55s ease forwards;
+}
+#nk9lp .lp-headline .hero-line:nth-child(1) { animation-delay: 0.35s; }
+#nk9lp .lp-headline .hero-line:nth-child(2) { animation-delay: 0.50s; color: #f1592a; }
+#nk9lp .lp-headline .hero-line:nth-child(3) { animation-delay: 0.65s; }
+
+#nk9lp .lp-hero-sub {
+  font-size: clamp(14px, 1.8vw, 17px);
+  color: rgba(255,255,255,0.6);
+  max-width: 460px;
+  line-height: 1.7;
+  margin-bottom: 36px;
+  opacity: 0;
+  animation: lp-rise 0.55s ease forwards 0.85s;
+  position: relative;
+  z-index: 2;
+}
+
+#nk9lp .lp-hero-ctas {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  justify-content: center;
+  opacity: 0;
+  animation: lp-rise 0.55s ease forwards 1.0s;
+  position: relative;
+  z-index: 2;
+}
+
+#nk9lp .lp-btn-primary {
+  background: #f1592a;
+  color: #fff;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 15px 32px;
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+  transition: background 0.2s;
+}
+#nk9lp .lp-btn-primary:hover { background: #d44a1e; }
+
+#nk9lp .lp-btn-outline {
+  background: transparent;
+  color: #fff;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 15px 32px;
+  border: 1px solid rgba(255,255,255,0.28);
+  display: inline-block;
+  transition: border-color 0.2s, color 0.2s;
+}
+#nk9lp .lp-btn-outline:hover { border-color: rgba(255,255,255,0.6); }
+
+/* scroll cue */
+#lp-scroll-cue {
+  position: absolute;
+  bottom: 90px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+  animation: lp-rise 0.55s ease forwards 1.3s;
+  transition: opacity 0.5s ease;
+  z-index: 10;
+  pointer-events: none;
+}
+
+#lp-scroll-cue span {
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+}
+
+.lp-scroll-arrow {
+  width: 18px;
+  height: 18px;
+  border-right: 1.5px solid rgba(255,255,255,0.25);
+  border-bottom: 1.5px solid rgba(255,255,255,0.25);
+  transform: rotate(45deg);
+  animation: lp-bounce 1.8s ease-in-out infinite;
+}
+
+@keyframes lp-bounce {
+  0%, 100% { transform: rotate(45deg) translate(0, 0); }
+  50%       { transform: rotate(45deg) translate(2px, 2px); }
+}
+
+/* ============================================================
+   MARQUEE STRIP
+   ============================================================ */
+#lp-marquee {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #f1592a;
+  padding: 13px 0;
+  overflow: hidden;
+  z-index: 30;
+  flex-shrink: 0;
+}
+
+.lp-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: lp-marquee 22s linear infinite;
+}
+
+.lp-marquee-track span {
+  font-family: 'Bebas Neue', 'Arial Narrow', Arial, sans-serif;
+  font-size: 15px;
+  letter-spacing: 2.5px;
+  color: rgba(255,255,255,0.95);
+  padding: 0 28px;
+  white-space: nowrap;
+}
+
+.lp-marquee-track span::after {
+  content: '·';
+  margin-left: 28px;
+  opacity: 0.55;
+}
+
+@keyframes lp-marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ============================================================
+   PROGRAM PANELS — absolute, stack over the hero
+   ============================================================ */
+.lp-prog-panel {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 32px 96px; /* 96px bottom clears the marquee */
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(20px);
+  transition: opacity 0.45s ease, transform 0.45s ease;
+}
+
+.lp-prog-panel.lp-active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+/* Gradient overlay dims the hero backdrop behind the card */
+.lp-prog-panel::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    160deg,
+    rgba(39,39,39,0.55) 0%,
+    rgba(39,39,39,0.82) 50%,
+    rgba(39,39,39,0.96) 100%
+  );
+  z-index: 0;
+}
+
+/* ---- PROGRAM CARD ---- */
+.lp-prog-card {
+  position: relative;
+  z-index: 2;
+  max-width: 640px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Giant ghost number behind the card */
+.lp-prog-ghost {
+  font-family: 'Bebas Neue', 'Arial Narrow', Arial, sans-serif;
+  font-size: clamp(140px, 28vw, 260px);
+  line-height: 0.8;
+  color: rgba(241, 89, 42, 0.10);
+  letter-spacing: -4px;
+  position: absolute;
+  top: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+  z-index: -1;
+}
+
+.lp-prog-tag {
+  display: inline-block;
+  font-size: 10px;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  color: #f1592a;
+  font-weight: 600;
+  margin-bottom: 14px;
+  padding: 5px 14px;
+  border: 1px solid rgba(241,89,42,0.3);
+}
+
+.lp-prog-name {
+  font-family: 'Bebas Neue', 'Arial Narrow', Arial, sans-serif;
+  font-size: clamp(52px, 10vw, 104px);
+  line-height: 0.88;
+  letter-spacing: 2px;
+  color: #ffffff;
+  margin-bottom: 20px;
+}
+
+.lp-prog-desc {
+  font-size: clamp(14px, 1.6vw, 16px);
+  color: rgba(255,255,255,0.65);
+  line-height: 1.75;
+  max-width: 460px;
+  margin: 0 auto 28px;
+}
+
+.lp-prog-badges {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 32px;
+}
+
+.lp-prog-badge {
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.75);
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  padding: 7px 14px;
+  white-space: nowrap;
+}
+
+.lp-prog-cta {
+  display: inline-block;
+  background: #f1592a;
+  color: #fff;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  padding: 15px 40px;
+  transition: background 0.2s;
+}
+.lp-prog-cta:hover { background: #d44a1e; }
+
+/* ============================================================
+   SIDE INDICATORS
+   ============================================================ */
+
+/* Vertical dots — right edge */
+#lp-prog-dots {
+  position: absolute;
+  right: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 35;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+#lp-prog-dots.visible { opacity: 1; }
+
+.lp-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  transition: background 0.35s, transform 0.35s;
+}
+
+.lp-dot.lp-dot-active {
+  background: #f1592a;
+  transform: scale(1.8);
+}
+
+/* Counter label — left edge, above marquee */
+#lp-prog-label {
+  position: absolute;
+  left: 24px;
+  bottom: 60px;
+  z-index: 35;
+  font-size: 10px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+#lp-prog-label.visible { opacity: 1; }
+
+/* ============================================================
+   KEYFRAMES
+   ============================================================ */
+@keyframes lp-rise {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================================
+   METHOD SECTION
+   ============================================================ */
+#lp-method {
+  background: #1c1c1c;
+  padding: 100px 24px;
+}
+
+#nk9lp .lp-section-wrap {
+  max-width: 1060px;
+  margin: 0 auto;
+}
+
+#nk9lp .lp-section-label {
+  font-size: 10px;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  color: #f1592a;
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+
+#nk9lp .lp-section-title {
+  font-family: 'Bebas Neue', 'Arial Narrow', Arial, sans-serif;
+  font-size: clamp(42px, 7vw, 76px);
+  line-height: 0.92;
+  letter-spacing: 1px;
+  color: #fff;
+  margin-bottom: 56px;
+}
+
+.lp-method-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px 64px;
+  align-items: start;
+}
+
+.lp-method-intro {
+  color: rgba(255,255,255,0.62);
+  font-size: 16px;
+  line-height: 1.85;
+}
+
+.lp-method-intro strong { color: #fff; }
+
+.lp-method-note {
+  color: rgba(255,255,255,0.35);
+  font-size: 13px;
+  margin-top: 20px;
+  line-height: 1.7;
+}
+
+.lp-method-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.lp-method-table th {
+  padding: 10px 16px;
+  text-align: left;
+  font-size: 10px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  font-weight: 600;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.lp-method-table th:first-child { color: rgba(255,255,255,0.35); }
+.lp-method-table th:last-child  { color: #f1592a; }
+
+.lp-method-table td {
+  padding: 13px 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  vertical-align: top;
+  line-height: 1.5;
+}
+
+.lp-method-table td:first-child { color: rgba(255,255,255,0.38); }
+.lp-method-table td:last-child  { color: rgba(255,255,255,0.82); }
+
+/* ============================================================
+   STATS BAR
+   ============================================================ */
+#lp-stats {
+  background: #f1e9d2;
+  padding: 72px 24px;
+}
+
+.lp-stats-grid {
+  max-width: 880px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+  text-align: center;
+}
+
+.lp-stat-num {
+  font-family: 'Bebas Neue', 'Arial Narrow', Arial, sans-serif;
+  font-size: clamp(52px, 8vw, 80px);
+  line-height: 1;
+  color: #272727;
+  letter-spacing: 1px;
+}
+
+.lp-stat-label {
+  font-size: 10px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: rgba(39,39,39,0.45);
+  margin-top: 8px;
+  font-weight: 600;
+}
+
+/* ============================================================
+   APPLY CTA
+   ============================================================ */
+#lp-apply {
+  background: #272727;
+  border-top: 3px solid #f1592a;
+  padding: 108px 24px;
+  text-align: center;
+}
+
+.lp-apply-headline {
+  font-family: 'Bebas Neue', 'Arial Narrow', Arial, sans-serif;
+  font-size: clamp(46px, 8.5vw, 92px);
+  line-height: 0.92;
+  letter-spacing: 2px;
+  color: #fff;
+  margin-bottom: 14px;
+}
+
+.lp-apply-sub {
+  font-size: 16px;
+  color: rgba(255,255,255,0.45);
+  margin-bottom: 44px;
+}
+
+.lp-apply-fine {
+  margin-top: 20px;
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: rgba(255,255,255,0.2);
+}
+
+/* ============================================================
+   SCROLL REVEAL (sections below the sticky)
+   ============================================================ */
+#nk9lp .lp-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.75s ease, transform 0.75s ease;
+}
+#nk9lp .lp-reveal.lp-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ============================================================
+   RESPONSIVE — Mobile: disable sticky, stack panels
+   ============================================================ */
+@media (max-width: 768px) {
+  /* Kill the sticky scroll — turn into normal stacked sections */
+  #lp-sticky-wrap  { height: auto; }
+  #lp-sticky-inner { position: relative; height: auto; overflow: visible; }
+
+  /* Hero as a standalone full-height section */
+  #lp-hero {
+    position: relative;
+    height: 100svh;
+    min-height: 580px;
+  }
+
+  /* Each program panel becomes a normal section */
+  .lp-prog-panel {
+    position: relative;
+    inset: auto;
+    opacity: 1 !important;
+    transform: none !important;
+    pointer-events: auto;
+    padding: 72px 24px 64px;
+    height: auto;
+  }
+
+  .lp-prog-panel::before { display: none; } /* no gradient overlay on mobile */
+
+  #lp-prog-sd { background: #1e1e1e; }
+  #lp-prog-ob { background: #232321; }
+  #lp-prog-pr { background: #1a1a1a; }
+
+  .lp-prog-ghost { display: none; }
+
+  /* Marquee inside hero only on mobile */
+  #lp-marquee {
+    position: absolute;
+    bottom: 0;
+  }
+
+  /* Hide desktop nav indicators */
+  #lp-prog-dots, #lp-prog-label, #lp-scroll-cue { display: none; }
+
+  /* Method grid stacks */
+  .lp-method-grid { grid-template-columns: 1fr; gap: 32px; }
+
+  /* Stats 2-col on mobile */
+  .lp-stats-grid { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+
+  /* Badges wrap tightly */
+  .lp-prog-badges { gap: 8px; }
+  .lp-prog-badge  { font-size: 10px; padding: 6px 11px; }
+
+  /* Method table scrolls horizontally on tiny screens */
+  .lp-method-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+}
+
+@media (max-width: 480px) {
+  #nk9lp .lp-headline { font-size: clamp(56px, 18vw, 80px); }
+  .lp-stats-grid { gap: 24px; }
+  #lp-apply { padding: 72px 24px; }
+}
+</style>
+
+<!-- ============================================================
+     NK9 LANDING PAGE HTML
+     ============================================================ -->
+<div id="nk9lp">
+
+  <!-- ── STICKY SCROLL SECTION ──────────────────────────────────────
+       500vh outer height: user scrolls 400vh across 4 stages (hero +
+       Service Dog + Obedience + Protection). Inner div stays pinned.
+  ──────────────────────────────────────────────────────────────── -->
+  <div id="lp-sticky-wrap">
+    <div id="lp-sticky-inner">
+
+      <!-- HERO BACKDROP -->
+      <div id="lp-hero">
+        <p class="lp-eyebrow">Nitro K9 · Bothell, WA</p>
+        <h1 class="lp-headline">
+          <span class="hero-line">Control</span>
+          <span class="hero-line">Without</span>
+          <span class="hero-line">Compromise.</span>
+        </h1>
+        <p class="lp-hero-sub">Professional, non-food-based dog training built on respect, drive, and precision — not treats.</p>
+        <div class="lp-hero-ctas">
+          <a href="#lp-apply" class="lp-btn-primary">Apply Now</a>
+          <a href="#lp-method" class="lp-btn-outline">Our Method</a>
+        </div>
+        <div id="lp-scroll-cue">
+          <span>Scroll</span>
+          <div class="lp-scroll-arrow"></div>
+        </div>
+      </div>
+      <!-- /hero -->
+
+      <!-- ── PROGRAM PANEL 1: SERVICE DOG ──────────────────────── -->
+      <div class="lp-prog-panel" id="lp-prog-sd">
+        <div class="lp-prog-card">
+          <div class="lp-prog-ghost" aria-hidden="true">01</div>
+          <span class="lp-prog-tag">Program 01</span>
+          <h2 class="lp-prog-name">Service Dog<br>Program</h2>
+          <p class="lp-prog-desc">One of the most comprehensive owner-trained service dog programs in the Pacific Northwest — precision-built around your specific disability needs.</p>
+          <div class="lp-prog-badges">
+            <span class="lp-prog-badge">Task Training</span>
+            <span class="lp-prog-badge">Public Access Certified</span>
+            <span class="lp-prog-badge">PTSD &amp; Medical Alerts</span>
+            <span class="lp-prog-badge">Custom Programs</span>
+          </div>
+          <a href="/service-dog-program" class="lp-prog-cta">Explore Program</a>
+        </div>
+      </div>
+
+      <!-- ── PROGRAM PANEL 2: OBEDIENCE ────────────────────────── -->
+      <div class="lp-prog-panel" id="lp-prog-ob">
+        <div class="lp-prog-card">
+          <div class="lp-prog-ghost" aria-hidden="true">02</div>
+          <span class="lp-prog-tag">Program 02</span>
+          <h2 class="lp-prog-name">Obedience<br>Training</h2>
+          <p class="lp-prog-desc">From basic manners to competition-level precision. We build real, reliable obedience through drive and relationship — no food required.</p>
+          <div class="lp-prog-badges">
+            <span class="lp-prog-badge">Off-Leash Control</span>
+            <span class="lp-prog-badge">Board &amp; Train</span>
+            <span class="lp-prog-badge">Private Lessons</span>
+            <span class="lp-prog-badge">All Breeds &amp; Ages</span>
+          </div>
+          <a href="/obedience" class="lp-prog-cta">Explore Program</a>
+        </div>
+      </div>
+
+      <!-- ── PROGRAM PANEL 3: PROTECTION ───────────────────────── -->
+      <div class="lp-prog-panel" id="lp-prog-pr">
+        <div class="lp-prog-card">
+          <div class="lp-prog-ghost" aria-hidden="true">03</div>
+          <span class="lp-prog-tag">Program 03</span>
+          <h2 class="lp-prog-name">Protection<br>&amp; IGP</h2>
+          <p class="lp-prog-desc">Elite personal protection and IGP sport work, developed by handlers with 30+ years of real-world experience in the field.</p>
+          <div class="lp-prog-badges">
+            <span class="lp-prog-badge">Personal Protection</span>
+            <span class="lp-prog-badge">IGP / Schutzhund</span>
+            <span class="lp-prog-badge">Estate Dogs</span>
+            <span class="lp-prog-badge">Detection Work</span>
+          </div>
+          <a href="/protection" class="lp-prog-cta">Explore Program</a>
+        </div>
+      </div>
+
+      <!-- Side dot navigation (desktop only) -->
+      <div id="lp-prog-dots">
+        <div class="lp-dot" id="lp-dot-0" title="Service Dog"></div>
+        <div class="lp-dot" id="lp-dot-1" title="Obedience"></div>
+        <div class="lp-dot" id="lp-dot-2" title="Protection"></div>
+      </div>
+
+      <!-- Counter label (desktop only) -->
+      <div id="lp-prog-label">
+        <span id="lp-prog-counter">01 / 03</span>
+      </div>
+
+      <!-- Marquee — always on top -->
+      <div id="lp-marquee">
+        <div class="lp-marquee-track" aria-hidden="true">
+          <span>Non-Food Based Training</span>
+          <span>Legendary Service Dog Program</span>
+          <span>Protection &amp; IGP</span>
+          <span>Obedience</span>
+          <span>Bothell WA</span>
+          <span>30+ Years Experience</span>
+          <span>Non-Food Based Training</span>
+          <span>Legendary Service Dog Program</span>
+          <span>Protection &amp; IGP</span>
+          <span>Obedience</span>
+          <span>Bothell WA</span>
+          <span>30+ Years Experience</span>
+        </div>
+      </div>
+
+    </div>
+    <!-- /sticky inner -->
+  </div>
+  <!-- /sticky wrap -->
+
+  <!-- ── METHOD SECTION ───────────────────────────────────────────── -->
+  <section id="lp-method">
+    <div class="lp-section-wrap lp-reveal">
+      <p class="lp-section-label">The NK9 Method</p>
+      <h2 class="lp-section-title">Results.<br>Without Shortcuts.</h2>
+      <div class="lp-method-grid">
+        <div>
+          <p class="lp-method-intro">Most trainers reach for food. We never do. At Nitro K9, we build obedience through <strong>relationship, drive, and consequence</strong> — which means when your dog listens, it's because they want to. Not because they're waiting for a treat.</p>
+          <p class="lp-method-note">This approach requires more skill, more time, and more commitment from both dog and handler. It also produces more reliable results in high-distraction, real-world environments.</p>
+        </div>
+        <div class="lp-method-table-wrap">
+          <table class="lp-method-table">
+            <thead>
+              <tr>
+                <th>Food-Based Training</th>
+                <th>NK9 Method</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Works until the treat runs out</td><td>Reliable under any distraction</td></tr>
+              <tr><td>Dog performs for reward</td><td>Dog performs out of drive &amp; respect</td></tr>
+              <tr><td>Breaks down under pressure</td><td>Holds under real-world conditions</td></tr>
+              <tr><td>Trainer-dependent results</td><td>Transfers fully to the owner</td></tr>
+              <tr><td>Not suitable for protection work</td><td>Foundation for service &amp; protection</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── STATS BAR ─────────────────────────────────────────────────── -->
+  <section id="lp-stats">
+    <div class="lp-stats-grid lp-reveal">
+      <div>
+        <div class="lp-stat-num" data-count="30" data-suffix="+">30+</div>
+        <div class="lp-stat-label">Years Experience</div>
+      </div>
+      <div>
+        <div class="lp-stat-num" data-count="200" data-suffix="+">200+</div>
+        <div class="lp-stat-label">Dogs Trained</div>
+      </div>
+      <div>
+        <div class="lp-stat-num" data-count="3" data-suffix="">3</div>
+        <div class="lp-stat-label">Core Programs</div>
+      </div>
+      <div>
+        <div class="lp-stat-num" data-count="4.7" data-suffix="★">4.7★</div>
+        <div class="lp-stat-label">Google Rating</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── APPLY CTA ─────────────────────────────────────────────────── -->
+  <section id="lp-apply">
+    <div class="lp-section-wrap lp-reveal" style="text-align:center;">
+      <p class="lp-section-label">Ready to Start</p>
+      <h2 class="lp-apply-headline">Your Dog.<br>Our Standards.</h2>
+      <p class="lp-apply-sub">We don't take every dog. We take the right ones.</p>
+      <a href="/contact" class="lp-btn-primary" style="font-size:14px;padding:18px 48px;">Apply for Training</a>
+      <p class="lp-apply-fine">Limited slots available &nbsp;·&nbsp; Bothell, WA &amp; surrounding areas</p>
+    </div>
+  </section>
+
+</div>
+<!-- /nk9lp -->
+
+<script>
+(function () {
+  'use strict';
+
+  /* ────────────────────────────────────────────────────────────────
+     STICKY SCROLL — PROGRAM PANEL SWITCHER
+     Disabled on mobile (≤768px) where panels stack normally.
+  ──────────────────────────────────────────────────────────────── */
+  var stickyWrap  = document.getElementById('lp-sticky-wrap');
+  var scrollCue   = document.getElementById('lp-scroll-cue');
+  var progDots    = document.getElementById('lp-prog-dots');
+  var progLabel   = document.getElementById('lp-prog-label');
+  var progCounter = document.getElementById('lp-prog-counter');
+
+  var panels = [
+    document.getElementById('lp-prog-sd'),
+    document.getElementById('lp-prog-ob'),
+    document.getElementById('lp-prog-pr'),
+  ];
+
+  var dots = [
+    document.getElementById('lp-dot-0'),
+    document.getElementById('lp-dot-1'),
+    document.getElementById('lp-dot-2'),
+  ];
+
+  var COUNTER_LABELS = ['01 / 03', '02 / 03', '03 / 03'];
+  var activeIdx = -2; // force first run
+
+  function showPanel(idx) {
+    if (idx === activeIdx) return;
+    activeIdx = idx;
+
+    panels.forEach(function (panel, i) {
+      panel.classList.toggle('lp-active', i === idx);
+    });
+
+    dots.forEach(function (dot, i) {
+      dot.classList.toggle('lp-dot-active', i === idx);
+    });
+
+    if (idx >= 0) {
+      // A program panel is showing
+      progDots.classList.add('visible');
+      progLabel.classList.add('visible');
+      progCounter.textContent = COUNTER_LABELS[idx];
+      scrollCue.style.opacity = '0';
+    } else {
+      // Hero only
+      progDots.classList.remove('visible');
+      progLabel.classList.remove('visible');
+      scrollCue.style.opacity = ''; // reset to CSS animation value
+    }
+  }
+
+  function onScroll() {
+    var rect        = stickyWrap.getBoundingClientRect();
+    var totalScroll = stickyWrap.offsetHeight - window.innerHeight; // 400vh
+    var scrolled    = -rect.top; // px scrolled into the sticky section
+
+    // Outside the sticky zone entirely
+    if (scrolled <= 0 || totalScroll <= 0) { showPanel(-1); return; }
+    if (scrolled >= totalScroll)            { showPanel(-1); return; }
+
+    var progress = scrolled / totalScroll; // 0 → 1 across the 400vh range
+
+    /*  Zone map (equal quarters):
+        0.00 – 0.25 → hero only
+        0.25 – 0.50 → Service Dog
+        0.50 – 0.75 → Obedience
+        0.75 – 1.00 → Protection                          */
+    if      (progress < 0.25) showPanel(-1);
+    else if (progress < 0.50) showPanel(0);
+    else if (progress < 0.75) showPanel(1);
+    else                      showPanel(2);
+  }
+
+  function isMobile() { return window.innerWidth <= 768; }
+
+  if (!isMobile() && stickyWrap) {
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll(); // initial state
+  }
+
+  // Re-check if viewport resizes past breakpoint
+  window.addEventListener('resize', function () {
+    if (isMobile()) {
+      window.removeEventListener('scroll', onScroll);
+    }
+  });
+
+  /* ────────────────────────────────────────────────────────────────
+     SCROLL REVEAL — sections below the sticky
+  ──────────────────────────────────────────────────────────────── */
+  var reveals = document.querySelectorAll('#nk9lp .lp-reveal');
+
+  if ('IntersectionObserver' in window) {
+    var revealObs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('lp-visible');
+          revealObs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    reveals.forEach(function (el) { revealObs.observe(el); });
+  } else {
+    reveals.forEach(function (el) { el.classList.add('lp-visible'); });
+  }
+
+  /* ────────────────────────────────────────────────────────────────
+     COUNT-UP ANIMATION
+  ──────────────────────────────────────────────────────────────── */
+  var counters = document.querySelectorAll('#nk9lp .lp-stat-num[data-count]');
+
+  var countObs = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (!entry.isIntersecting) return;
+      var el       = entry.target;
+      var target   = parseFloat(el.dataset.count);
+      var suffix   = el.dataset.suffix || '';
+      var decimal  = String(target).indexOf('.') !== -1;
+      var duration = 1600;
+      var startTime = null;
+
+      function tick(now) {
+        if (!startTime) startTime = now;
+        var elapsed = now - startTime;
+        var t       = Math.min(elapsed / duration, 1);
+        var ease    = 1 - Math.pow(1 - t, 3); // ease-out cubic
+        var current = target * ease;
+
+        el.textContent = (decimal ? current.toFixed(1) : Math.floor(current)) + suffix;
+
+        if (t < 1) {
+          requestAnimationFrame(tick);
+        } else {
+          el.textContent = (decimal ? target.toFixed(1) : target) + suffix;
+        }
+      }
+
+      requestAnimationFrame(tick);
+      countObs.unobserve(el);
+    });
+  }, { threshold: 0.3 });
+
+  counters.forEach(function (el) { countObs.observe(el); });
+
+})();
+</script>
