@@ -1,0 +1,1499 @@
+<!-- ══════════════════════════════════════════════════════════════
+     NK9 Homepage — Consolidated
+     Sections: Testimonials · Our Offerings · What We Do ·
+               Philosophy · Team · CTA · Footer
+     ══════════════════════════════════════════════════════════════ -->
+
+<!-- ── FONTS (single import for the whole page) ── -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ─────────────────────────────────────────────────
+   DESIGN TOKENS
+───────────────────────────────────────────────── */
+:root {
+  --bg-dark:       #272727;
+  --bg-darker:     #111111;
+  --accent:        #f1592a;
+  --warm:          #f1e9d2;
+  --text-white:    #ffffff;
+  --text-muted:    rgba(255,255,255,0.55);
+  --text-faint:    rgba(255,255,255,0.15);
+  --inner-max:     1120px;
+  --section-pad:   80px 24px;
+  --font-display:  'Bebas Neue', sans-serif;
+  --font-body:     'Inter', sans-serif;
+}
+
+/* ─────────────────────────────────────────────────
+   GLOBAL RESETS (scoped to NK9 sections)
+───────────────────────────────────────────────── */
+.nk9-results *, #nk9-middleHeader *, .nk9-programs *, #nk9-philosophy *,
+#nk9-team *, #nk9-cta-band *, .nk-footer * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+.nk9-results, #nk9-middleHeader, .nk9-programs, #nk9-philosophy,
+#nk9-team, #nk9-cta-band, .nk-footer {
+  font-family: var(--font-body);
+}
+
+/* ─────────────────────────────────────────────────
+   1. CLIENT TESTIMONIALS
+───────────────────────────────────────────────── */
+.nk9-res-header {
+  background: var(--bg-dark);
+  padding: 80px 24px 72px;
+}
+.nk9-res-header-inner {
+  max-width: var(--inner-max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: end;
+}
+.nk9-res-eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 12px;
+}
+.nk9-res-h2 {
+  font-family: var(--font-display);
+  font-size: clamp(48px, 6vw, 80px);
+  color: var(--text-white);
+  line-height: 1;
+}
+.nk9-res-intro {
+  font-size: 15px;
+  color: var(--text-muted);
+  line-height: 1.75;
+  align-self: end;
+}
+.nk9-res-intro strong { color: rgba(255,255,255,0.85); }
+
+.nk9-res-quotes {
+  background: var(--warm);
+  padding: var(--section-pad);
+}
+.nk9-res-quotes-inner {
+  max-width: var(--inner-max);
+  margin: 0 auto;
+}
+.nk9-res-quote-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.nk9-res-quote-card {
+  background: #ffffff;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+}
+.nk9-res-quote-mark {
+  font-family: var(--font-display);
+  font-size: 64px;
+  color: var(--accent);
+  line-height: 0.6;
+  margin-bottom: 20px;
+  display: block;
+}
+.nk9-res-quote-text {
+  font-size: 14px;
+  color: rgba(39,39,39,0.75);
+  line-height: 1.8;
+  font-style: italic;
+  flex: 1;
+}
+.nk9-res-quote-footer {
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(39,39,39,0.1);
+}
+.nk9-res-quote-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: #272727;
+  display: block;
+}
+.nk9-res-quote-loc {
+  font-size: 11px;
+  color: rgba(39,39,39,0.4);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 2px;
+  display: block;
+}
+.nk9-res-quote-result {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-top: 8px;
+}
+
+.nk9-res-cta {
+  background: var(--bg-dark);
+  padding: 72px 24px;
+  text-align: center;
+  border-top: 2px solid var(--accent);
+}
+.nk9-res-cta h2 {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 4vw, 56px);
+  color: var(--text-white);
+  margin-bottom: 12px;
+}
+.nk9-res-cta p {
+  font-size: 14px;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 32px;
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.nk9-res-cta a {
+  display: inline-block;
+  padding: 16px 40px;
+  background: var(--accent);
+  color: var(--text-white);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 2px solid var(--accent);
+  transition: background 0.2s, color 0.2s;
+}
+.nk9-res-cta a:hover { background: transparent; color: var(--accent); }
+
+/* ─────────────────────────────────────────────────
+   2. OUR OFFERINGS
+───────────────────────────────────────────────── */
+#nk9-middleHeader {
+  background: transparent;
+  padding: var(--section-pad);
+  padding-bottom: 0;
+}
+#nk9-middleHeader .middleHeader-inner {
+  max-width: var(--inner-max);
+  margin: 0 auto;
+}
+#nk9-middleHeader .middleHeader-header {
+  text-align: center;
+  margin-bottom: 44px;
+}
+#nk9-middleHeader .middleHeader-header .eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 10px;
+}
+#nk9-middleHeader .middleHeader-header h2 {
+  font-family: var(--font-display);
+  font-size: clamp(48px, 6vw, 80px);
+  color: var(--text-white);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+#nk9-middleHeader .middleHeader-header p {
+  font-size: 15px;
+  color: var(--text-muted);
+  max-width: 480px;
+  margin: 0 auto;
+  line-height: 1.65;
+}
+
+#nk9-prog-preview {
+  max-width: var(--inner-max);
+  margin: 0 auto;
+  padding: 0 24px 80px;
+}
+#nk9-prog-preview .prog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 32px;
+}
+#nk9-prog-preview .prog-card {
+  background: #fff;
+  border: 1px solid #e8e8e8;
+  overflow: hidden;
+  text-decoration: none;
+  display: block;
+  transition: transform 0.2s, box-shadow 0.2s;
+  position: relative;
+}
+#nk9-prog-preview .prog-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+}
+#nk9-prog-preview .prog-card-img {
+  background: #1e1e1e;
+  padding: 24px;
+  text-align: center;
+  height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#nk9-prog-preview .prog-card-img img {
+  max-height: 120px;
+  max-width: 100%;
+  object-fit: contain;
+}
+#nk9-prog-preview .prog-card-body { padding: 16px 18px 20px; }
+#nk9-prog-preview .prog-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: #272727;
+  margin-bottom: 6px;
+  display: block;
+}
+#nk9-prog-preview .prog-desc {
+  font-size: 13px;
+  color: #777;
+  line-height: 1.55;
+  margin-bottom: 14px;
+}
+#nk9-prog-preview .level-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(241,89,42,0.9);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 3px 9px;
+}
+#nk9-prog-preview .view-all-wrap { text-align: center; }
+#nk9-prog-preview .view-all-btn {
+  display: inline-block;
+  border: 2px solid var(--accent);
+  color: var(--accent);
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 12px 36px;
+  transition: background 0.2s, color 0.2s;
+}
+#nk9-prog-preview .view-all-btn:hover { background: var(--accent); color: #fff; }
+
+.nk9-programs-cta {
+  background: var(--bg-dark);
+  padding: 72px 24px;
+  text-align: center;
+  border-top: 2px solid var(--accent);
+}
+.nk9-programs-cta h2 {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 4vw, 56px);
+  color: var(--text-white);
+  margin-bottom: 20px;
+}
+.nk9-programs-cta a {
+  display: inline-block;
+  padding: 16px 40px;
+  background: var(--accent);
+  color: var(--text-white);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 2px solid var(--accent);
+  transition: background 0.2s, color 0.2s;
+}
+.nk9-programs-cta a:hover { background: transparent; color: var(--accent); }
+
+/* ─────────────────────────────────────────────────
+   3. WHAT WE DO (Accordion)
+───────────────────────────────────────────────── */
+.nk9-programs {
+  background: var(--bg-dark);
+  color: var(--text-white);
+}
+.nk9-programs a { text-decoration: none; }
+
+.nk9-programs .section-header {
+  max-width: var(--inner-max);
+  margin: 0 auto;
+  padding: 80px 24px 56px;
+}
+.nk9-programs .section-eyebrow {
+  display: block;
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  margin-bottom: 12px;
+}
+.nk9-programs .section-heading-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+}
+.nk9-programs .section-heading {
+  font-family: var(--font-display);
+  font-size: clamp(48px, 6vw, 80px);
+  color: var(--text-white);
+  line-height: 1;
+  max-width: 700px;
+}
+.nk9-programs .section-desc {
+  font-size: 14px;
+  color: var(--text-muted);
+  max-width: 360px;
+  line-height: 1.7;
+}
+
+.nk9-programs .accordion-wrap {
+  max-width: var(--inner-max);
+  margin: 0 auto;
+  padding: 0 24px 80px;
+}
+
+/* Accordion items */
+.nk9-programs .prog-item { border-top: 1px solid rgba(255,255,255,0.1); }
+.nk9-programs .prog-item:last-child { border-bottom: 1px solid rgba(255,255,255,0.1); }
+.nk9-programs .prog-header {
+  display: flex;
+  align-items: center;
+  padding: 28px 0;
+  gap: 24px;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.nk9-programs .nk9-prog-inner { display: flex; align-items: center; gap: 24px; flex: 1; }
+.nk9-programs .prog-number {
+  font-family: var(--font-display);
+  font-size: 52px;
+  color: rgba(255,255,255,0.15);
+  line-height: 1;
+  min-width: 64px;
+  transition: color 0.2s;
+}
+.nk9-programs .prog-title {
+  font-family: var(--font-display);
+  font-size: 44px;
+  color: var(--text-white);
+  line-height: 1.1;
+  transition: color 0.2s;
+}
+.nk9-programs .prog-icon {
+  color: rgba(255,255,255,0.4);
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  transition: transform 0.35s ease;
+}
+.nk9-programs .prog-item.active .prog-icon  { transform: rotate(45deg); }
+.nk9-programs .prog-item.active .prog-number { color: rgba(241,89,42,0.5); }
+.nk9-programs .prog-item.active .prog-title  { color: var(--accent); }
+.nk9-programs .prog-header:hover .prog-title { color: var(--accent); }
+
+.nk9-programs .prog-content {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.45s ease-out, opacity 0.3s ease-out;
+}
+.nk9-programs .prog-content.open {
+  max-height: 1200px;
+  opacity: 1;
+  transition: max-height 0.5s ease-in, opacity 0.4s ease-in 0.05s;
+}
+.nk9-programs .prog-content-pad { padding-bottom: 32px; }
+.nk9-programs .prog-content-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  padding-left: 88px;
+}
+.nk9-programs .prog-content-desc {
+  font-size: 15px;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.8;
+  margin-bottom: 24px;
+}
+.nk9-programs .prog-bullets { list-style: none; }
+.nk9-programs .prog-bullet {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 12px;
+}
+.nk9-programs .prog-bullet:last-child { margin-bottom: 0; }
+.nk9-programs .prog-dash { width: 16px; height: 1px; background: var(--accent); flex-shrink: 0; }
+.nk9-programs .tags-col { display: flex; flex-direction: column; justify-content: flex-end; }
+.nk9-programs .tag {
+  display: inline-block;
+  border: 1px solid rgba(241,89,42,0.4);
+  color: var(--accent);
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  padding: 4px 10px;
+  margin: 0 6px 6px 0;
+}
+
+/* ─────────────────────────────────────────────────
+   4. TRAINING PHILOSOPHY
+───────────────────────────────────────────────── */
+#nk9-philosophy {
+  max-width: var(--inner-max);
+  margin: 0 auto;
+  padding: var(--section-pad);
+}
+#nk9-philosophy .phil-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+}
+#nk9-philosophy .phil-img img {
+  width: 100%;
+  border-radius: 10px;
+  display: block;
+  max-height: 550px;
+  object-fit: cover;
+  object-position: top;
+}
+#nk9-philosophy .phil-content .eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 12px;
+}
+#nk9-philosophy .phil-content h2 {
+  font-family: var(--font-display);
+  font-size: clamp(48px, 6vw, 80px);
+  color: #272727;
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+#nk9-philosophy .phil-content p {
+  font-size: 15px;
+  color: #555;
+  line-height: 1.8;
+  margin-bottom: 16px;
+}
+#nk9-philosophy .phil-content p:last-of-type { margin-bottom: 24px; }
+#nk9-philosophy .phil-pillars {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 28px;
+  margin-top: 20px;
+}
+#nk9-philosophy .pillar {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 13px;
+  color: #444;
+  font-weight: 600;
+}
+#nk9-philosophy .pillar::before {
+  content: '';
+  display: block;
+  width: 8px;
+  height: 8px;
+  background: var(--accent);
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+#nk9-philosophy .phil-link {
+  display: inline-block;
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 13px;
+  text-decoration: none;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 2px;
+  transition: opacity 0.2s;
+}
+#nk9-philosophy .phil-link:hover { opacity: 0.75; }
+
+/* ─────────────────────────────────────────────────
+   5. MEET THE TEAM
+───────────────────────────────────────────────── */
+#nk9-team {
+  background: transparent;
+  padding: var(--section-pad);
+}
+#nk9-team .team-inner { max-width: var(--inner-max); margin: 0 auto; }
+#nk9-team .team-header { text-align: center; margin-bottom: 44px; }
+#nk9-team .team-header .eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 10px;
+}
+#nk9-team .team-header h2 {
+  font-family: var(--font-display);
+  font-size: clamp(48px, 6vw, 80px);
+  color: var(--text-white);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+#nk9-team .team-header p {
+  font-size: 15px;
+  color: rgba(255,255,255,0.5);
+  max-width: 480px;
+  margin: 0 auto;
+  line-height: 1.65;
+}
+#nk9-team .team-grid {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 16px;
+  cursor: grab;
+}
+#nk9-team .team-grid:active { cursor: grabbing; }
+#nk9-team .team-grid::-webkit-scrollbar { height: 4px; }
+#nk9-team .team-grid::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); }
+#nk9-team .team-grid::-webkit-scrollbar-thumb { background: var(--accent); }
+#nk9-team .team-card {
+  flex-shrink: 0;
+  width: clamp(240px, 72vw, 300px);
+  scroll-snap-align: start;
+  background: #fff;
+  border: 1px solid #e8e8e8;
+  border-radius: 10px;
+  overflow: hidden;
+  text-align: center;
+}
+#nk9-team .team-card-img { width: 100%; height: 260px; overflow: hidden; background: #1e1e1e; }
+#nk9-team .team-card-img img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+#nk9-team .team-card-body { padding: 20px 16px 22px; }
+#nk9-team .team-name { font-size: 17px; font-weight: 700; color: #272727; display: block; margin-bottom: 4px; }
+#nk9-team .team-title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 12px;
+}
+#nk9-team .team-bio { font-size: 13px; color: #777; line-height: 1.65; margin-bottom: 14px; }
+#nk9-team .avail-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #aaa;
+  margin-bottom: 4px;
+  display: block;
+}
+#nk9-team .avail-text { font-size: 12px; color: #888; line-height: 1.5; }
+#nk9-team .team-contact {
+  display: inline-block;
+  margin-top: 14px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--accent);
+  text-decoration: none;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+#nk9-team .team-contact:hover { text-decoration: underline; }
+
+/* ─────────────────────────────────────────────────
+   6. CTA BAND
+───────────────────────────────────────────────── */
+#nk9-cta-band {
+  background: var(--accent);
+  padding: var(--section-pad);
+  text-align: center;
+}
+#nk9-cta-band h2 {
+  font-family: var(--font-display);
+  font-size: clamp(26px, 4vw, 42px);
+  color: #fff;
+  line-height: 1.2;
+  margin-bottom: 14px;
+}
+#nk9-cta-band > p {
+  font-size: 16px;
+  color: rgba(255,255,255,0.85);
+  max-width: 520px;
+  margin: 0 auto 32px;
+  line-height: 1.65;
+}
+#nk9-cta-band .cta-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+}
+#nk9-cta-band .btn-primary {
+  display: inline-block;
+  background: #272727;
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 16px 44px;
+  transition: background 0.2s;
+}
+#nk9-cta-band .btn-primary:hover { background: #555; }
+#nk9-cta-band .btn-secondary {
+  display: inline-block;
+  background: transparent;
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 14px 36px;
+  border: 2px solid rgba(255,255,255,0.6);
+  transition: border-color 0.2s, background 0.2s;
+}
+#nk9-cta-band .btn-secondary:hover { border-color: #fff; background: rgba(255,255,255,0.1); }
+#nk9-cta-band .cta-fine {
+  font-size: 12px;
+  color: rgba(255,255,255,0.6);
+  margin-top: 16px;
+}
+
+/* ─────────────────────────────────────────────────
+   7. FOOTER
+───────────────────────────────────────────────── */
+.round-photo {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  margin-bottom: 20px;
+}
+.nk-footer {
+  background: var(--bg-darker);
+  border-top: 3px solid var(--accent);
+  font-family: var(--font-body);
+}
+.nk-footer-main {
+  max-width: var(--inner-max);
+  margin: 0 auto;
+  padding: 52px 24px 48px;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 48px;
+}
+.nk-footer-wordmark {
+  font-family: var(--font-display);
+  font-size: 26px;
+  letter-spacing: 0.08em;
+  color: var(--text-white);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.nk-footer-sub {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 16px;
+}
+.nk-footer-tagline {
+  font-size: 13px;
+  color: #555;
+  line-height: 1.65;
+  margin-bottom: 22px;
+  max-width: 260px;
+}
+.nk-footer-socials { display: flex; gap: 8px; }
+.nk-social {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid #2a2a2a;
+  background: #1a1a1a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #555;
+  text-decoration: none;
+  transition: border-color 0.2s, color 0.2s;
+}
+.nk-social:hover { border-color: var(--accent); color: var(--accent); }
+
+.nk-col-heading {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 14px;
+  margin-top: 24px;
+}
+.nk-col-heading:first-child { margin-top: 0; }
+.nk-footer-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.nk-footer-links a { font-size: 13px; color: #555; text-decoration: none; transition: color 0.2s; }
+.nk-footer-links a:hover { color: var(--text-white); }
+.nk-contact-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+.nk-contact-list li { display: flex; align-items: flex-start; gap: 10px; }
+.nk-contact-icon { font-size: 14px; flex-shrink: 0; margin-top: 1px; opacity: 0.7; }
+.nk-contact-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #3a3a3a;
+  display: block;
+  margin-bottom: 2px;
+}
+.nk-contact-value { font-size: 13px; color: #555; text-decoration: none; transition: color 0.2s; line-height: 1.4; }
+a.nk-contact-value:hover { color: var(--accent); }
+.nk-footer-seo { border-top: 1px solid #1a1a1a; padding: 18px 24px; }
+.nk-footer-seo-inner {
+  max-width: var(--inner-max);
+  margin: 0 auto;
+  font-size: 11px;
+  color: #2e2e2e;
+  line-height: 1.7;
+}
+.nk-footer-legal { border-top: 1px solid #1a1a1a; padding: 16px 24px; }
+.nk-footer-legal-inner {
+  max-width: var(--inner-max);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+}
+.nk-legal-copy { font-size: 11px; color: #333; font-weight: 600; margin-right: 4px; }
+.nk-legal-sep { color: #2a2a2a; font-size: 12px; }
+.nk-footer-legal a { font-size: 11px; color: #333; text-decoration: none; transition: color 0.2s; }
+.nk-footer-legal a:hover { color: var(--accent); }
+
+/* ─────────────────────────────────────────────────
+   RESPONSIVE
+───────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .nk9-res-header-inner { grid-template-columns: 1fr; gap: 20px; }
+  .nk9-res-quote-grid { grid-template-columns: 1fr 1fr; }
+  #nk9-prog-preview .prog-grid { grid-template-columns: 1fr 1fr; }
+  .nk9-programs .section-header { padding: 56px 24px 40px; }
+  .nk9-programs .section-heading { font-size: 64px; }
+  .nk9-programs .accordion-wrap { padding: 0 24px 56px; }
+  .nk9-programs .prog-content-grid { grid-template-columns: 1fr; padding-left: 60px; }
+  #nk9-philosophy .phil-grid { grid-template-columns: 1fr; gap: 28px; }
+  #nk9-philosophy .phil-img { order: -1; }
+  .nk-footer-main { grid-template-columns: 1fr 1fr; gap: 36px; padding: 40px 20px 36px; }
+  .nk-footer-brand { grid-column: 1 / -1; }
+  .nk-footer-tagline { max-width: 100%; }
+}
+@media (max-width: 640px) {
+  .nk9-res-quote-grid { grid-template-columns: 1fr; }
+  .nk9-programs .section-header { padding: 44px 20px 32px; }
+  .nk9-programs .section-heading { font-size: 44px; }
+  .nk9-programs .section-desc { font-size: 13px; }
+  .nk9-programs .accordion-wrap { padding: 0 20px 44px; }
+  .nk9-programs .nk9-prog-inner { gap: 12px; }
+  .nk9-programs .prog-number { font-size: 28px; min-width: 36px; }
+  .nk9-programs .prog-title { font-size: 24px; }
+  .nk9-programs .prog-header { padding: 18px 0; gap: 12px; }
+  .nk9-programs .prog-content-grid { grid-template-columns: 1fr; padding-left: 0; gap: 20px; }
+  .nk9-programs .prog-content-desc { font-size: 14px; }
+  .nk9-programs .prog-content-pad { padding-bottom: 24px; }
+  .nk9-programs .tags-col { order: -1; }
+}
+@media (max-width: 480px) {
+  #nk9-prog-preview .prog-grid { grid-template-columns: 1fr; }
+  .nk-footer-main { grid-template-columns: 1fr; gap: 32px; }
+  .nk-footer-legal-inner { justify-content: center; text-align: center; }
+}
+@media (max-width: 400px) {
+  .nk9-programs .section-heading { font-size: 36px; }
+  .nk9-programs .prog-title { font-size: 20px; }
+  .nk9-programs .prog-number { display: none; }
+}
+</style>
+
+
+<!-- ══════════════════════════════════════════════
+     1. CLIENT TESTIMONIALS  (#client-testimonials)
+     ══════════════════════════════════════════════ -->
+<div class="nk9-results">
+
+  <div class="nk9-res-header">
+    <div class="nk9-res-header-inner">
+      <div>
+        <span class="nk9-res-eyebrow">Client Results</span>
+        <h2 class="nk9-res-h2">Testimonies</h2>
+      </div>
+      <p class="nk9-res-intro">These are real Nitro clients, not cherry-picked edge cases. <strong>Every dog on this page had a real problem.</strong> Every one of them has an owner who followed the plan.</p>
+    </div>
+  </div>
+
+  <div class="nk9-res-quotes">
+    <div class="nk9-res-quotes-inner">
+      <div class="nk9-res-quote-grid">
+
+        <div class="nk9-res-quote-card">
+          <span class="nk9-res-quote-mark">"</span>
+          <p class="nk9-res-quote-text">We tried two other trainers before NK9. Within the first week of board and train, our dog stopped bolting out the door. Steve doesn't waste your time — he fixes the problem.</p>
+          <div class="nk9-res-quote-footer">
+            <span class="nk9-res-quote-name">Marcus T.</span>
+            <span class="nk9-res-quote-loc">Everett, WA</span>
+            <span class="nk9-res-quote-result">Result: Off-leash reliability in 3 weeks</span>
+          </div>
+        </div>
+
+        <div class="nk9-res-quote-card">
+          <span class="nk9-res-quote-mark">"</span>
+          <p class="nk9-res-quote-text">I was embarrassed to walk my dog. He'd lunge at everything. After private lessons with NK9, I finally feel in control. The structure they teach actually works.</p>
+          <div class="nk9-res-quote-footer">
+            <span class="nk9-res-quote-name">Jennifer R.</span>
+            <span class="nk9-res-quote-loc">Mill Creek, WA</span>
+            <span class="nk9-res-quote-result">Result: Leash reactivity eliminated</span>
+          </div>
+        </div>
+
+        <div class="nk9-res-quote-card">
+          <span class="nk9-res-quote-mark">"</span>
+          <p class="nk9-res-quote-text">Board &amp; Train was the best investment I've made for my dog and my sanity. Daily updates, explained everything, and the results held up at home.</p>
+          <div class="nk9-res-quote-footer">
+            <span class="nk9-res-quote-name">Derek M.</span>
+            <span class="nk9-res-quote-loc">Bothell, WA</span>
+            <span class="nk9-res-quote-result">Result: Reliable obedience, zero regression</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="nk9-res-cta">
+    <h2>Stop Struggling with your dog</h2>
+    <p>Applications are reviewed personally. If we take your dog on, it's because we know we can help.</p>
+    <a href="/contact">Sign-Up Now</a>
+  </div>
+
+</div>
+
+
+<!-- ══════════════════════════════════════════════
+     2. OUR OFFERINGS  (#our-offerings)
+     ══════════════════════════════════════════════ -->
+<div id="nk9-middleHeader">
+  <div class="middleHeader-inner">
+    <div class="middleHeader-header">
+      <span class="eyebrow">What We Offer</span>
+      <h2>Training Programs</h2>
+      <p>Each program is specifically tailored to you and your dog's exact need. If you're looking for training you don't see listed, contact us — we can still help.</p>
+    </div>
+  </div>
+
+  <div id="nk9-prog-preview">
+    <div class="prog-grid">
+
+      <a class="prog-card" href="https://nitrocanine.com/mystaging01/test/">
+        <div class="prog-card-img">
+          <img src="https://nitrocanine.com/mystaging01/wp-content/uploads/2026/03/obedience-lvl-1-1.png" alt="Obedience Training">
+        </div>
+        <div class="prog-card-body">
+          <span class="prog-name">Obedience Training</span>
+          <p class="prog-desc">On-leash foundations through off-leash reliability. Available for Mini Heroes and Large Dogs.</p>
+        </div>
+      </a>
+
+      <a class="prog-card" href="https://nitrocanine.com/mystaging01/test/">
+        <div class="prog-card-img">
+          <img src="https://nitrocanine.com/mystaging01/wp-content/uploads/2026/03/SERVICE-lvl-3.png" alt="Service Dog Training">
+        </div>
+        <div class="level-badge">Level 3</div>
+        <div class="prog-card-body">
+          <span class="prog-name">Service Dog Training</span>
+          <p class="prog-desc">Task training, public access, and ADA compliance. Requires Obedience 1+2.</p>
+        </div>
+      </a>
+
+      <a class="prog-card" href="https://nitrocanine.com/mystaging01/test/">
+        <div class="prog-card-img">
+          <img src="https://nitrocanine.com/mystaging01/wp-content/uploads/2026/03/PROTECTION-lvl-3.png" alt="Protection Dog Training">
+        </div>
+        <div class="level-badge">Level 3</div>
+        <div class="prog-card-body">
+          <span class="prog-name">Protection Dog Training</span>
+          <p class="prog-desc">Personal protection, IGP/Schutzhund sport, and family guardian development.</p>
+        </div>
+      </a>
+
+      <a class="prog-card" href="https://nitrocanine.com/mystaging01/test/">
+        <div class="prog-card-img">
+          <img src="https://nitrocanine.com/mystaging01/wp-content/uploads/2026/03/boardAndTrain.png" alt="Board and Train">
+        </div>
+        <div class="prog-card-body">
+          <span class="prog-name">Board &amp; Train</span>
+          <p class="prog-desc">Your dog stays with us and receives intensive daily training. 1–6 week programs.</p>
+        </div>
+      </a>
+
+      <a class="prog-card" href="https://nitrocanine.com/mystaging01/test/">
+        <div class="prog-card-img">
+          <img src="https://nitrocanine.com/mystaging01/wp-content/uploads/2026/03/aggressionStopper.png" alt="Aggression Stopper">
+        </div>
+        <div class="prog-card-body">
+          <span class="prog-name">Aggression Stopper</span>
+          <p class="prog-desc">For aggressive, reactive, or anxious dogs. Structured behavior rehabilitation without suppression.</p>
+        </div>
+      </a>
+
+      <a class="prog-card" href="https://nitrocanine.com/mystaging01/test/">
+        <div class="prog-card-img">
+          <img src="https://nitrocanine.com/mystaging01/wp-content/uploads/2026/03/virtual.png" alt="Virtual Training">
+        </div>
+        <div class="prog-card-body">
+          <span class="prog-name">Virtual Training</span>
+          <p class="prog-desc">Live video sessions with Steve — same proven methodology, available anywhere.</p>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</div>
+
+<div class="nk9-programs-cta">
+  <h2>View All Programs &amp; Pricing</h2>
+  <a href="https://nitrocanine.com/mystaging01/test/">All Programs &rarr;</a>
+</div>
+
+
+<!-- ══════════════════════════════════════════════
+     3. WHAT WE DO  (#what-we-do)
+     ══════════════════════════════════════════════ -->
+<div class="nk9-programs" id="nk9-accordion-section">
+
+  <div class="section-header">
+    <span class="section-eyebrow">What We Do</span>
+    <div class="section-heading-row">
+      <h2 class="section-heading">A Complete System.<br>Proven Results.</h2>
+      <p class="section-desc">Our work spans competition obedience, behavior rehabilitation, service dog training, protection work, and search &amp; rescue — built through decades of real-world application.</p>
+    </div>
+  </div>
+
+  <div class="accordion-wrap" id="nk9-accordion">
+
+    <!-- 01 — Obedience -->
+    <div class="prog-item active">
+      <div class="prog-header">
+        <div class="nk9-prog-inner">
+          <span class="prog-number">01</span>
+          <span class="prog-title">Serious Obedience. Real Control.</span>
+        </div>
+        <svg class="prog-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 5v14M5 12h14"/>
+        </svg>
+      </div>
+      <div class="prog-content open prog-content-pad">
+        <div class="prog-content-grid">
+          <div>
+            <p class="prog-content-desc">We produce dogs capable of competition-level obedience with reliability both on and off leash.</p>
+            <ul class="prog-bullets">
+              <li class="prog-bullet"><span class="prog-dash"></span>Precision heeling</li>
+              <li class="prog-bullet"><span class="prog-dash"></span>Reliable recall under distraction</li>
+              <li class="prog-bullet"><span class="prog-dash"></span>Full control in real-world environments</li>
+              <li class="prog-bullet"><span class="prog-dash"></span>Engagement that holds under pressure</li>
+            </ul>
+          </div>
+          <div class="tags-col">
+            <div><span class="tag">On &amp; Off Leash</span><span class="tag">Competition Level</span><span class="tag">Real-World</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 02 — Protection -->
+    <div class="prog-item">
+      <div class="prog-header">
+        <div class="nk9-prog-inner">
+          <span class="prog-number">02</span>
+          <span class="prog-title">Protection Training</span>
+        </div>
+        <svg class="prog-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 5v14M5 12h14"/>
+        </svg>
+      </div>
+      <div class="prog-content prog-content-pad">
+        <div class="prog-content-grid">
+          <div>
+            <p class="prog-content-desc">Structured protection training for qualified dogs and handlers. Real-world application — not sport only.</p>
+            <ul class="prog-bullets">
+              <li class="prog-bullet"><span class="prog-dash"></span>Control before aggression</li>
+              <li class="prog-bullet"><span class="prog-dash"></span>Stability and clarity</li>
+              <li class="prog-bullet"><span class="prog-dash"></span>Real-world application</li>
+            </ul>
+          </div>
+          <div class="tags-col">
+            <div><span class="tag">Qualified Dogs Only</span><span class="tag">Handler Training</span><span class="tag">Real-World</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 03 — Service Dogs -->
+    <div class="prog-item">
+      <div class="prog-header">
+        <div class="nk9-prog-inner">
+          <span class="prog-number">03</span>
+          <span class="prog-title">Service Dogs</span>
+        </div>
+        <svg class="prog-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 5v14M5 12h14"/>
+        </svg>
+      </div>
+      <div class="prog-content prog-content-pad">
+        <div class="prog-content-grid">
+          <div>
+            <p class="prog-content-desc">Psychiatric and mobility service dogs trained for real-life performance. Our PSD tasking system is used by handlers around the world daily.</p>
+            <ul class="prog-bullets">
+              <li class="prog-bullet"><span class="prog-dash"></span>Deep Pressure Therapy (DPT)</li>
+              <li class="prog-bullet"><span class="prog-dash"></span>Anxiety &amp; panic interruption</li>
+              <li class="prog-bullet"><span class="prog-dash"></span>Grounding and engagement</li>
+              <li class="prog-bullet"><span class="prog-dash"></span>Mobility assistance</li>
+              <li class="prog-bullet"><span class="prog-dash"></span>Environmental awareness</li>
+            </ul>
+          </div>
+          <div class="tags-col">
+            <div><span class="tag">Psychiatric</span><span class="tag">Mobility</span><span class="tag">PSD Tasking</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 04 — Scent Work -->
+    <div class="prog-item">
+      <div class="prog-header">
+        <div class="nk9-prog-inner">
+          <span class="prog-number">04</span>
+          <span class="prog-title">Search, Rescue &amp; Scent Work</span>
+        </div>
+        <svg class="prog-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 5v14M5 12h14"/>
+        </svg>
+      </div>
+      <div class="prog-content prog-content-pad">
+        <div class="prog-content-grid">
+          <div>
+            <p class="prog-content-desc">We train dogs in scent detection, tracking, and search &amp; rescue — building drive, focus, and problem-solving ability. This work improves confidence and mental engagement in companion dogs too.</p>
+            <ul class="prog-bullets">
+              <li class="prog-bullet"><span class="prog-dash"></span>Scent detection</li>
+              <li class="prog-bullet"><span class="prog-dash"></span>Tracking</li>
+              <li class="prog-bullet"><span class="prog-dash"></span>Search &amp; rescue applications</li>
+            </ul>
+          </div>
+          <div class="tags-col">
+            <div><span class="tag">Working Dogs</span><span class="tag">Companion Dogs</span><span class="tag">Drive Development</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 05 — Nutrition -->
+    <div class="prog-item">
+      <div class="prog-header">
+        <div class="nk9-prog-inner">
+          <span class="prog-number">05</span>
+          <span class="prog-title">Nutrition, Strength &amp; Total Development</span>
+        </div>
+        <svg class="prog-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 5v14M5 12h14"/>
+        </svg>
+      </div>
+      <div class="prog-content prog-content-pad">
+        <div class="prog-content-grid">
+          <div>
+            <p class="prog-content-desc">Training doesn't start with commands — it starts with the dog's body and mind. Performance, behavior, and health are all connected.</p>
+            <ul class="prog-bullets">
+              <li class="prog-bullet"><span class="prog-dash"></span>Nitro K-9 canine protein &amp; nutrition system</li>
+              <li class="prog-bullet"><span class="prog-dash"></span>Diet consultations tailored to your dog</li>
+              <li class="prog-bullet"><span class="prog-dash"></span>Strength and conditioning development</li>
+            </ul>
+          </div>
+          <div class="tags-col">
+            <div><span class="tag">NK9 Nutrition</span><span class="tag">Conditioning</span><span class="tag">Whole Dog</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 06 — Group Classes -->
+    <div class="prog-item">
+      <div class="prog-header">
+        <div class="nk9-prog-inner">
+          <span class="prog-number">06</span>
+          <span class="prog-title">Group Socialization Classes</span>
+        </div>
+        <svg class="prog-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 5v14M5 12h14"/>
+        </svg>
+      </div>
+      <div class="prog-content prog-content-pad">
+        <div class="prog-content-grid">
+          <div>
+            <p class="prog-content-desc">Free bi-monthly group socialization classes — structured, controlled, and trainer-led. Reinforce training, improve neutrality, and build confidence around other dogs and environments.</p>
+            <ul class="prog-bullets">
+              <li class="prog-bullet"><span class="prog-dash"></span>Bi-monthly sessions</li>
+              <li class="prog-bullet"><span class="prog-dash"></span>Trainer-led and structured</li>
+              <li class="prog-bullet"><span class="prog-dash"></span>Open to NK9 clients</li>
+            </ul>
+          </div>
+          <div class="tags-col">
+            <div><span class="tag">Free</span><span class="tag">Clients Only</span><span class="tag">Bi-Monthly</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════
+     4. TRAINING PHILOSOPHY  (#training-philosophy)
+     ══════════════════════════════════════════════ -->
+<div id="nk9-philosophy">
+  <div class="phil-grid">
+    <div class="phil-img">
+      <img src="https://nitrocanine.com/mystaging01/wp-content/uploads/2026/03/steve-blade-focus.png" alt="Steve Walter — Nitro K-9 Lead Trainer">
+    </div>
+    <div class="phil-content">
+      <span class="eyebrow">Our Approach</span>
+      <h2>Training Built on Communication, Not Commands</h2>
+      <p>Founded by Steve Walter, a professional dog trainer with over 30 years of experience, Nitro K-9 has trained thousands of dogs across the U.S. and internationally. From severe behavioral cases to high-level working dogs, our training is built on proven systems — not trends.</p>
+      <p>We are known for working with dogs other trainers turn away:</p>
+      <div class="phil-pillars">
+        <div class="pillar">Aggression</div>
+        <div class="pillar">Anxiety and Fear</div>
+        <div class="pillar">Reactivity and Lack of Control</div>
+        <div class="pillar">Shut-down or Unstable Dogs</div>
+      </div>
+      <a class="phil-link" href="https://nitrocanine.com/mystaging01/final-home/training-philosophy/">Learn More about our Philosophy &rarr;</a>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════
+     5. MEET THE TEAM  (#meet-the-team)
+     ══════════════════════════════════════════════ -->
+<div id="nk9-team">
+  <div class="team-inner">
+    <div class="team-header">
+      <span class="eyebrow">The People Behind the Work</span>
+      <h2>Meet the Team</h2>
+      <p>Experienced, passionate, and genuinely invested in your dog's success.</p>
+    </div>
+
+    <div class="team-grid">
+
+      <div class="team-card">
+        <div class="team-card-img">
+          <img src="https://nitrocanine.com/mystaging01/wp-content/uploads/2026/04/Steve-bio-Pic-3.png" alt="Steve Walter — Owner and Senior Trainer">
+        </div>
+        <div class="team-card-body">
+          <span class="team-name">Steve Walter</span>
+          <span class="team-title">Owner &amp; Senior Trainer</span>
+          <p class="team-bio">30+ years of experience across obedience, service dog, and protection disciplines. Trained under European working-dog systems including IGP/Schutzhund and K.N.P.V.</p>
+          <span class="avail-label">Availability</span>
+          <span class="avail-text">Sun, Mon, Thu, Fri, Sat — Facility<br>Mon &amp; Tue — Home Visits</span>
+          <a class="team-contact" href="https://nitrocanine.com/mystaging01/steve-walter-bio/">Read More</a>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <div class="team-card-img">
+          <img src="https://nitrocanine.com/mystaging01/wp-content/uploads/2026/04/North-bio-Pic.png" alt="North Perez — Manager and Lead Trainer">
+        </div>
+        <div class="team-card-body">
+          <span class="team-name">North Perez</span>
+          <span class="team-title">Manager &amp; Lead Trainer</span>
+          <p class="team-bio">Specializes in building real-world reliability and handler confidence. Available for both facility and in-home sessions throughout the week.</p>
+          <span class="avail-label">Availability</span>
+          <span class="avail-text">Sun, Mon, Tue, Wed, Sat<br>Facility &amp; Home Visits</span>
+          <a class="team-contact" href="https://nitrocanine.com/mystaging01/north-perez-bio/">Read More</a>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <div class="team-card-img">
+          <img src="https://nitrocanine.com/mystaging01/wp-content/uploads/2026/06/Karl-and-Autumn.png" alt="Karl — Decoy">
+        </div>
+        <div class="team-card-body">
+          <span class="team-name">Karl</span>
+          <span class="team-title">Decoy</span>
+          <p class="team-bio">Our protection and sport training specialist. Karl works alongside Steve and North in bite sport, handler scenarios, and protection development sessions.</p>
+          <span class="avail-label">Specialty</span>
+          <span class="avail-text">Protection &amp; Sport Training<br>IGP / Schutzhund Work</span>
+          <a class="team-contact" href="mailto:steve@nitrocanine.com">Get in Touch</a>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <div class="team-card-img">
+          <img src="https://nitrocanine.com/mystaging01/wp-content/uploads/2026/06/Sam.png" alt="Sam — Decoy">
+        </div>
+        <div class="team-card-body">
+          <span class="team-name">Sam</span>
+          <span class="team-title">Decoy</span>
+          <p class="team-bio">Our protection and sport training specialist. Sam works alongside Steve and North in bite sport, handler scenarios, and protection development sessions.</p>
+          <span class="avail-label">Specialty</span>
+          <span class="avail-text">Protection &amp; Sport Training<br>IGP / Schutzhund Work</span>
+          <a class="team-contact" href="mailto:steve@nitrocanine.com">Get in Touch</a>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <div class="team-card-img">
+          <img src="https://nitrocanine.com/mystaging01/wp-content/uploads/2026/06/James-and-Bebe.png" alt="James — Decoy">
+        </div>
+        <div class="team-card-body">
+          <span class="team-name">James</span>
+          <span class="team-title">Decoy</span>
+          <p class="team-bio">Our protection and sport training specialist. James works alongside Steve and North in bite sport, handler scenarios, and protection development sessions.</p>
+          <span class="avail-label">Specialty</span>
+          <span class="avail-text">Protection &amp; Sport Training<br>IGP / Schutzhund Work</span>
+          <a class="team-contact" href="mailto:steve@nitrocanine.com">Get in Touch</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════
+     6. CTA BAND  (#home-cta)
+     ══════════════════════════════════════════════ -->
+<div id="nk9-cta-band">
+  <h2>Ready to Build a Stronger Relationship<br>with Your Dog?</h2>
+  <p>Every program starts with a Behavioral Assessment. Sign up and we'll contact you to schedule an assessment within 24–48 hours.</p>
+  <div class="cta-buttons">
+    <a class="btn-primary" href="https://nitrocanine.com/sign-up-desktop/">Start Training</a>
+    <a class="btn-secondary" href="https://nitrocanine.com/mystaging01/test/">Explore Programs</a>
+  </div>
+  <p class="cta-fine">Assessment: $100 &nbsp;·&nbsp; Bothell, WA &nbsp;·&nbsp; Open Daily 10AM–7PM &nbsp;·&nbsp; <a href="tel:+14258922519" style="color:#00bfff;"><strong>(425) 892-2519</strong></a></p>
+</div>
+
+
+<!-- ══════════════════════════════════════════════
+     7. FOOTER  (#footer)
+     ══════════════════════════════════════════════ -->
+<footer class="nk-footer" aria-label="Site footer">
+
+  <div class="nk-footer-main">
+
+    <!-- Brand -->
+    <div class="nk-footer-brand">
+      <img src="https://nitrocanine.com/wp-content/uploads/2026/05/150x150logo.png" class="round-photo" alt="Nitro K-9 Logo">
+      <div class="nk-footer-wordmark">Nitro K-9 LLC</div>
+      <span class="nk-footer-sub">Bothell, WA · Est. 1993</span>
+      <p class="nk-footer-tagline">Professional dog training across obedience, service dog, protection, and aggression rehabilitation. Serving Washington State.</p>
+      <div class="nk-footer-socials">
+        <a href="https://www.instagram.com/nitrok9" class="nk-social" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5"/>
+            <circle cx="12" cy="12" r="4"/>
+            <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+          </svg>
+        </a>
+        <a href="https://www.tiktok.com/@nitrok9llc" class="nk-social" target="_blank" rel="noopener" aria-label="TikTok">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.16 8.16 0 004.78 1.52V6.77a4.85 4.85 0 01-1.01-.08z"/>
+          </svg>
+        </a>
+        <a href="https://t.me/nitrok9servicedogs" class="nk-social" target="_blank" rel="noopener" aria-label="Telegram">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="22" y1="2" x2="11" y2="13"/>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+          </svg>
+        </a>
+        <a href="[YOUR-FACEBOOK-URL]" class="nk-social" target="_blank" rel="noopener" aria-label="Facebook">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Programs & Services -->
+    <div>
+      <div class="nk-col-heading">Programs</div>
+      <ul class="nk-footer-links">
+        <li><a href="https://nitrocanine.com/training-program-selector/">View All Programs</a></li>
+      </ul>
+      <div class="nk-col-heading">Services</div>
+      <ul class="nk-footer-links">
+        <li><a href="https://nitrocanine.com/services/">Pet Sitting</a></li>
+        <li><a href="https://nitrocanine.com/services/">Dog Walking</a></li>
+        <li><a href="https://nitrocanine.com/services/">Nail Trims</a></li>
+      </ul>
+      <div class="nk-col-heading">About Nitro K-9</div>
+      <ul class="nk-footer-links">
+        <li><a href="[URL]">Training Philosophy</a></li>
+        <li><a href="[URL]">Meet The Team</a></li>
+      </ul>
+      <div class="nk-col-heading">Resources</div>
+      <ul class="nk-footer-links">
+        <li><a href="[URL]">Articles, Ebooks &amp; Guides</a></li>
+      </ul>
+    </div>
+
+    <!-- Contact -->
+    <div>
+      <div class="nk-col-heading">Contact</div>
+      <ul class="nk-contact-list">
+        <li>
+          <span class="nk-contact-icon">📞</span>
+          <div>
+            <span class="nk-contact-label">Phone</span>
+            <a class="nk-contact-value" href="tel:+14258922519">(425) 892-2519</a>
+          </div>
+        </li>
+        <li>
+          <span class="nk-contact-icon">✉️</span>
+          <div>
+            <span class="nk-contact-label">Email</span>
+            <a class="nk-contact-value" href="mailto:admin@nitrocanine.com">admin@nitrocanine.com</a>
+          </div>
+        </li>
+        <li>
+          <span class="nk-contact-icon">📍</span>
+          <div>
+            <span class="nk-contact-label">Location</span>
+            <span class="nk-contact-value">Bothell, WA 98012</span>
+          </div>
+        </li>
+        <li>
+          <span class="nk-contact-icon">🕐</span>
+          <div>
+            <span class="nk-contact-label">Hours</span>
+            <span class="nk-contact-value">Daily · 10AM – 7PM</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="nk-footer-seo">
+    <div class="nk-footer-seo-inner">
+      Nitro K-9 LLC — professional dog training in Bothell, WA. Serving King County, Snohomish County,
+      and greater Seattle. Specializing in obedience, service dog training, protection dogs, board &amp; train,
+      aggression rehabilitation, and sport dog disciplines (Schutzhund, KNPV, French Ring). Open daily.
+    </div>
+  </div>
+
+  <div class="nk-footer-legal">
+    <div class="nk-footer-legal-inner">
+      <span class="nk-legal-copy">© 2026 Nitro K-9 LLC.</span>
+      <span class="nk-legal-sep">·</span>
+      <a href="[URL]">Privacy Policy</a>
+      <span class="nk-legal-sep">·</span>
+      <a href="[URL]">Terms of Service</a>
+      <span class="nk-legal-sep">·</span>
+      <a href="[URL]">Disclaimer</a>
+      <span class="nk-legal-sep">·</span>
+      <a href="[URL]">ADA Notice</a>
+      <span class="nk-legal-sep">·</span>
+      <span style="font-size:11px;color:#2e2e2e;">Individual results may vary.</span>
+    </div>
+  </div>
+
+</footer>
+
+
+<!-- ══════════════════════════════════════════════
+     SCRIPTS (combined, deferred)
+     ══════════════════════════════════════════════ -->
+<script>
+(function () {
+  /* ── Accordion ── */
+  var items = document.querySelectorAll('#nk9-accordion .prog-item');
+  items.forEach(function (item) {
+    item.querySelector('.prog-header').addEventListener('click', function () {
+      var isOpen = item.classList.contains('active');
+      items.forEach(function (i) {
+        i.classList.remove('active');
+        i.querySelector('.prog-content').classList.remove('open');
+      });
+      if (!isOpen) {
+        item.classList.add('active');
+        item.querySelector('.prog-content').classList.add('open');
+      }
+    });
+  });
+
+  /* ── Team carousel drag-to-scroll ── */
+  var grid = document.querySelector('#nk9-team .team-grid');
+  if (grid) {
+    var isDown = false, startX, scrollLeft;
+    grid.addEventListener('mousedown', function (e) {
+      isDown = true;
+      startX = e.pageX - grid.offsetLeft;
+      scrollLeft = grid.scrollLeft;
+    });
+    grid.addEventListener('mouseleave', function () { isDown = false; });
+    grid.addEventListener('mouseup',    function () { isDown = false; });
+    grid.addEventListener('mousemove',  function (e) {
+      if (!isDown) return;
+      e.preventDefault();
+      grid.scrollLeft = scrollLeft - (e.pageX - grid.offsetLeft - startX);
+    });
+  }
+})();
+</script>
