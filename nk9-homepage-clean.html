@@ -993,6 +993,62 @@ a.nk-contact-value:hover { color: var(--accent); }
 
 </div>
 
+<script>
+(function () {
+  var grid = document.querySelector('.nk9-res-quote-grid');
+  var pag  = document.querySelector('.nk9-res-pagination');
+  if (!grid || !pag) return;
+
+  var cards   = Array.from(grid.querySelectorAll('.nk9-res-quote-card'));
+  var perPage = 3;
+  var pages   = Math.ceil(cards.length / perPage);
+  var current = 0;
+
+  if (pages <= 1) return;
+
+  function render(page) {
+    current = page;
+    cards.forEach(function (card, i) {
+      card.style.display = (i >= page * perPage && i < (page + 1) * perPage) ? '' : 'none';
+    });
+    pag.querySelectorAll('.nk9-res-pag-dot').forEach(function (dot, i) {
+      dot.classList.toggle('active', i === current);
+    });
+    pag.querySelector('.nk9-res-pag-prev').disabled = current === 0;
+    pag.querySelector('.nk9-res-pag-next').disabled = current === pages - 1;
+  }
+
+  var prev = document.createElement('button');
+  prev.className = 'nk9-res-pag-btn nk9-res-pag-prev';
+  prev.setAttribute('aria-label', 'Previous');
+  prev.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg>';
+  prev.addEventListener('click', function () { if (current > 0) render(current - 1); });
+
+  var dotsWrap = document.createElement('div');
+  dotsWrap.className = 'nk9-res-pag-dots';
+  for (var i = 0; i < pages; i++) {
+    (function (idx) {
+      var dot = document.createElement('button');
+      dot.className = 'nk9-res-pag-dot';
+      dot.setAttribute('aria-label', 'Page ' + (idx + 1));
+      dot.addEventListener('click', function () { render(idx); });
+      dotsWrap.appendChild(dot);
+    })(i);
+  }
+
+  var next = document.createElement('button');
+  next.className = 'nk9-res-pag-btn nk9-res-pag-next';
+  next.setAttribute('aria-label', 'Next');
+  next.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg>';
+  next.addEventListener('click', function () { if (current < pages - 1) render(current + 1); });
+
+  pag.appendChild(prev);
+  pag.appendChild(dotsWrap);
+  pag.appendChild(next);
+  render(0);
+})();
+</script>
+
 
 <!-- ══════════════════════════════════════════════
      2. OUR OFFERINGS  (#our-offerings)
@@ -1530,61 +1586,6 @@ a.nk-contact-value:hover { color: var(--accent); }
      ══════════════════════════════════════════════ -->
 <script>
 (function () {
-  /* ── Testimonial Pagination ── */
-  (function () {
-    var grid = document.querySelector('.nk9-res-quote-grid');
-    var pag  = document.querySelector('.nk9-res-pagination');
-    if (!grid || !pag) return;
-
-    var cards   = Array.from(grid.querySelectorAll('.nk9-res-quote-card'));
-    var perPage = 3;
-    var pages   = Math.ceil(cards.length / perPage);
-    var current = 0;
-
-    if (pages <= 1) return;
-
-    function render(page) {
-      current = page;
-      cards.forEach(function (card, i) {
-        card.style.display = (i >= page * perPage && i < (page + 1) * perPage) ? '' : 'none';
-      });
-      pag.querySelectorAll('.nk9-res-pag-dot').forEach(function (dot, i) {
-        dot.classList.toggle('active', i === current);
-      });
-      pag.querySelector('.nk9-res-pag-prev').disabled = current === 0;
-      pag.querySelector('.nk9-res-pag-next').disabled = current === pages - 1;
-    }
-
-    var prev = document.createElement('button');
-    prev.className = 'nk9-res-pag-btn nk9-res-pag-prev';
-    prev.setAttribute('aria-label', 'Previous');
-    prev.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg>';
-    prev.addEventListener('click', function () { if (current > 0) render(current - 1); });
-
-    var dotsWrap = document.createElement('div');
-    dotsWrap.className = 'nk9-res-pag-dots';
-    for (var i = 0; i < pages; i++) {
-      (function (idx) {
-        var dot = document.createElement('button');
-        dot.className = 'nk9-res-pag-dot';
-        dot.setAttribute('aria-label', 'Page ' + (idx + 1));
-        dot.addEventListener('click', function () { render(idx); });
-        dotsWrap.appendChild(dot);
-      })(i);
-    }
-
-    var next = document.createElement('button');
-    next.className = 'nk9-res-pag-btn nk9-res-pag-next';
-    next.setAttribute('aria-label', 'Next');
-    next.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg>';
-    next.addEventListener('click', function () { if (current < pages - 1) render(current + 1); });
-
-    pag.appendChild(prev);
-    pag.appendChild(dotsWrap);
-    pag.appendChild(next);
-    render(0);
-  })();
-
   /* ── Accordion ── */
   var items = document.querySelectorAll('#nk9-accordion .prog-item');
   items.forEach(function (item) {
