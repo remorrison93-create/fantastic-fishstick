@@ -176,6 +176,41 @@
 }
 .nk9-res-cta a:hover { background: transparent; color: var(--accent); }
 
+/* Testimonial Pagination */
+.nk9-res-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 40px;
+}
+.nk9-res-pag-btn {
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: 2px solid rgba(39,39,39,0.2);
+  color: #272727;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.2s, color 0.2s;
+  padding: 0;
+}
+.nk9-res-pag-btn:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
+.nk9-res-pag-btn:disabled { opacity: 0.3; cursor: default; }
+.nk9-res-pag-dots { display: flex; gap: 8px; align-items: center; }
+.nk9-res-pag-dot {
+  width: 8px;
+  height: 8px;
+  background: rgba(39,39,39,0.2);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.2s, transform 0.2s;
+}
+.nk9-res-pag-dot.active { background: var(--accent); transform: scale(1.4); }
+
 /* ─────────────────────────────────────────────────
    2. OUR OFFERINGS
 ───────────────────────────────────────────────── */
@@ -913,7 +948,40 @@ a.nk-contact-value:hover { color: var(--accent); }
           </div>
         </div>
 
+        <!-- ─── Add more testimonials below — just copy a card block ─── -->
+
+        <div class="nk9-res-quote-card">
+          <span class="nk9-res-quote-mark">"</span>
+          <p class="nk9-res-quote-text">My GSD was shutting down completely at any distraction. Steve spotted the root of it in five minutes and had a plan the same day. Watching her confidence come back was something else.</p>
+          <div class="nk9-res-quote-footer">
+            <span class="nk9-res-quote-name">Ashley K.</span>
+            <span class="nk9-res-quote-loc">Kirkland, WA</span>
+            <span class="nk9-res-quote-result">Result: Confidence rebuilt, distraction-proof</span>
+          </div>
+        </div>
+
+        <div class="nk9-res-quote-card">
+          <span class="nk9-res-quote-mark">"</span>
+          <p class="nk9-res-quote-text">We needed a psychiatric service dog for my daughter. NK9 was the only trainer with an actual program — not just a vest and a wish. The difference in her daily life is night and day.</p>
+          <div class="nk9-res-quote-footer">
+            <span class="nk9-res-quote-name">Robert P.</span>
+            <span class="nk9-res-quote-loc">Lynnwood, WA</span>
+            <span class="nk9-res-quote-result">Result: Full public access certification</span>
+          </div>
+        </div>
+
+        <div class="nk9-res-quote-card">
+          <span class="nk9-res-quote-mark">"</span>
+          <p class="nk9-res-quote-text">I've had dogs my whole life and thought I knew what I was doing. NK9 showed me the actual gaps in my handling and fixed them. The dog I have now is unrecognizable — in the best way.</p>
+          <div class="nk9-res-quote-footer">
+            <span class="nk9-res-quote-name">Tom S.</span>
+            <span class="nk9-res-quote-loc">Redmond, WA</span>
+            <span class="nk9-res-quote-result">Result: Off-leash reliability, full rehabilitation</span>
+          </div>
+        </div>
+
       </div>
+      <div class="nk9-res-pagination"></div>
     </div>
   </div>
 
@@ -1462,6 +1530,61 @@ a.nk-contact-value:hover { color: var(--accent); }
      ══════════════════════════════════════════════ -->
 <script>
 (function () {
+  /* ── Testimonial Pagination ── */
+  (function () {
+    var grid = document.querySelector('.nk9-res-quote-grid');
+    var pag  = document.querySelector('.nk9-res-pagination');
+    if (!grid || !pag) return;
+
+    var cards   = Array.from(grid.querySelectorAll('.nk9-res-quote-card'));
+    var perPage = 3;
+    var pages   = Math.ceil(cards.length / perPage);
+    var current = 0;
+
+    if (pages <= 1) return;
+
+    function render(page) {
+      current = page;
+      cards.forEach(function (card, i) {
+        card.style.display = (i >= page * perPage && i < (page + 1) * perPage) ? '' : 'none';
+      });
+      pag.querySelectorAll('.nk9-res-pag-dot').forEach(function (dot, i) {
+        dot.classList.toggle('active', i === current);
+      });
+      pag.querySelector('.nk9-res-pag-prev').disabled = current === 0;
+      pag.querySelector('.nk9-res-pag-next').disabled = current === pages - 1;
+    }
+
+    var prev = document.createElement('button');
+    prev.className = 'nk9-res-pag-btn nk9-res-pag-prev';
+    prev.setAttribute('aria-label', 'Previous');
+    prev.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg>';
+    prev.addEventListener('click', function () { if (current > 0) render(current - 1); });
+
+    var dotsWrap = document.createElement('div');
+    dotsWrap.className = 'nk9-res-pag-dots';
+    for (var i = 0; i < pages; i++) {
+      (function (idx) {
+        var dot = document.createElement('button');
+        dot.className = 'nk9-res-pag-dot';
+        dot.setAttribute('aria-label', 'Page ' + (idx + 1));
+        dot.addEventListener('click', function () { render(idx); });
+        dotsWrap.appendChild(dot);
+      })(i);
+    }
+
+    var next = document.createElement('button');
+    next.className = 'nk9-res-pag-btn nk9-res-pag-next';
+    next.setAttribute('aria-label', 'Next');
+    next.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg>';
+    next.addEventListener('click', function () { if (current < pages - 1) render(current + 1); });
+
+    pag.appendChild(prev);
+    pag.appendChild(dotsWrap);
+    pag.appendChild(next);
+    render(0);
+  })();
+
   /* ── Accordion ── */
   var items = document.querySelectorAll('#nk9-accordion .prog-item');
   items.forEach(function (item) {
