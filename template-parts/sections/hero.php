@@ -1,105 +1,156 @@
 <?php
 /**
  * Section: Hero
- * Full-viewport split layout — text left, image/overlay right
+ * Split layout — text left, trainer image right with striped circle accent
  */
 ?>
 <section class="relative min-h-[90vh] flex items-center bg-nk-dark overflow-hidden" aria-label="Hero">
 
-    <!-- Background image (set via inline style or WP featured image) -->
-    <div class="absolute inset-0 z-0">
-        <?php if ( has_post_thumbnail() ) : ?>
-        <img
-            src="<?php the_post_thumbnail_url( 'full' ); ?>"
-            alt=""
-            class="w-full h-full object-cover opacity-20"
-            aria-hidden="true"
-        >
-        <?php else : ?>
-        <!-- Fallback: dark grid pattern -->
-        <div class="absolute inset-0 opacity-5" style="background-image: linear-gradient(rgba(241,233,210,.3) 1px, transparent 1px), linear-gradient(90deg, rgba(241,233,210,.3) 1px, transparent 1px); background-size: 60px 60px;"></div>
-        <?php endif; ?>
-        <!-- Gradient overlay -->
-        <div class="absolute inset-0 bg-gradient-to-r from-nk-dark via-nk-dark/90 to-nk-dark/40"></div>
-    </div>
+    <div class="relative z-10 nk-container py-16 lg:py-24 w-full">
+        <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-0">
 
-    <!-- Accent line left edge -->
-    <div class="absolute left-0 top-0 bottom-0 w-1 bg-nk-accent z-10"></div>
+            <!-- Left: Text Content -->
+            <div class="flex-1 max-w-2xl" data-hero-animate data-delay="0">
 
-    <div class="relative z-10 nk-container py-24 lg:py-32 w-full">
-        <div class="max-w-2xl">
+                <!-- Eyebrow -->
+                <p class="font-body text-sm tracking-[0.25em] text-nk-white/60 uppercase mb-4">
+                    Nitro K-9 &nbsp;|&nbsp; Bothell, WA
+                </p>
 
-            <!-- Eyebrow -->
-            <span
-                class="section-label reveal is-visible"
-                data-hero-animate
-                data-delay="0"
-            >
-                Professional Dog Training
-            </span>
+                <!-- Headline -->
+                <h1 class="font-display tracking-widest leading-none mb-6" style="font-size: clamp(3rem, 8vw, 6rem);">
+                    <span class="text-nk-white">REAL </span><span class="text-nk-accent">DOG TRAINING</span><br>
+                    <span class="text-nk-white">REAL </span><span class="text-nk-accent">RESULTS</span>
+                </h1>
 
-            <!-- Headline -->
-            <h1
-                class="font-display text-hero tracking-widest text-nk-white leading-none mb-6 reveal is-visible"
-                data-hero-animate
-                data-delay="100"
-            >
-                Control Your Dog.<br>
-                <span class="text-nk-accent">Rebuild Your</span><br>
-                Relationship.
-            </h1>
+                <!-- Body / Read More -->
+                <div class="font-body text-base lg:text-lg text-nk-white leading-relaxed max-w-xl mb-10">
+                    <p>
+                        Lorem ipsum dul set e lore to ipsu dul set e lore to ipsum dul set e lore to ipsu dul set e lore to ipsum...
+                        <button
+                            id="hero-read-more-btn"
+                            class="inline font-body text-sm text-nk-white/60 underline underline-offset-2 hover:text-nk-white transition-colors duration-200 ml-1 tracking-wider uppercase"
+                            aria-haspopup="dialog"
+                            aria-controls="hero-read-more-modal"
+                        >Read More</button>
+                    </p>
+                </div>
 
-            <!-- Subheadline -->
-            <p
-                class="font-body text-base lg:text-lg text-nk-white/70 leading-relaxed max-w-lg mb-10 reveal is-visible"
-                data-hero-animate
-                data-delay="200"
-            >
-                NK9 works with frustrated dog owners who are done making excuses and ready for real results. We train dogs. We train owners. We deliver outcomes.
-            </p>
+                <!-- CTAs -->
+                <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+                    <a href="<?php echo esc_url( home_url( '/contact' ) ); ?>"
+                       class="inline-block font-display tracking-widest text-sm px-10 py-4 bg-nk-accent text-nk-white uppercase hover:bg-nk-accent/90 transition-colors duration-200">
+                        Sign-Up
+                    </a>
+                    <a href="<?php echo esc_url( home_url( '/programs' ) ); ?>"
+                       class="inline-block font-display tracking-widest text-sm px-10 py-4 bg-transparent text-nk-white uppercase border-2 border-nk-white hover:bg-nk-white hover:text-nk-dark transition-colors duration-200">
+                        Programs
+                    </a>
+                </div>
 
-            <!-- CTAs -->
-            <div
-                class="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-14 reveal is-visible"
-                data-hero-animate
-                data-delay="300"
-            >
-                <a href="<?php echo esc_url( home_url( '/contact' ) ); ?>" class="btn-primary">
-                    Apply for Training
-                </a>
-                <a
-                    href="#how-it-works"
-                    class="inline-flex items-center gap-2 font-body text-sm text-nk-white/60 hover:text-nk-white transition-colors duration-200 group"
-                >
-                    See How It Works
-                    <svg class="w-4 h-4 translate-x-0 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-                    </svg>
-                </a>
             </div>
 
-            <!-- Trust strip -->
-            <div
-                class="flex flex-wrap gap-x-8 gap-y-3 reveal is-visible"
-                data-hero-animate
-                data-delay="400"
-            >
-                <?php
-                $trust_items = [
-                    'Balanced Training',
-                    'Board &amp; Train Available',
-                    'Results-Focused',
-                ];
-                foreach ( $trust_items as $item ) : ?>
-                <div class="flex items-center gap-2">
-                    <span class="w-1.5 h-1.5 rounded-full bg-nk-accent" aria-hidden="true"></span>
-                    <span class="font-body text-xs uppercase tracking-wider text-nk-white/50">
-                        <?php echo $item; ?>
-                    </span>
+            <!-- Right: Trainer image with striped circle -->
+            <div class="flex-1 flex justify-center items-end relative min-h-[480px] lg:min-h-[600px]" data-hero-animate data-delay="200">
+
+                <!-- Striped circle background -->
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[380px] h-[380px] lg:w-[480px] lg:h-[480px] rounded-full overflow-hidden" aria-hidden="true">
+                    <div class="w-full h-full rounded-full" style="background: repeating-linear-gradient(0deg, #f1592a 0px, #f1592a 18px, transparent 18px, transparent 36px); opacity: 0.9;"></div>
                 </div>
-                <?php endforeach; ?>
+
+                <!-- Trainer + dogs image -->
+                <?php
+                $hero_image_url = get_template_directory_uri() . '/assets/images/trainer-hero.png';
+                ?>
+                <img
+                    src="<?php echo esc_url( $hero_image_url ); ?>"
+                    alt="Nitro K-9 trainer with dogs"
+                    class="relative z-10 max-h-[560px] lg:max-h-[680px] w-auto object-contain object-bottom drop-shadow-2xl"
+                >
+
             </div>
 
         </div>
     </div>
+
 </section>
+
+<!-- Read More Modal -->
+<div
+    id="hero-read-more-modal"
+    class="fixed inset-0 z-50 flex items-center justify-center p-4 hidden"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="hero-modal-title"
+>
+    <!-- Backdrop -->
+    <div id="hero-modal-backdrop" class="absolute inset-0 bg-black/70" aria-hidden="true"></div>
+
+    <!-- Panel -->
+    <div class="relative z-10 bg-nk-dark border border-nk-white/10 max-w-2xl w-full max-h-[90vh] overflow-y-auto p-10">
+
+        <!-- Close -->
+        <button
+            id="hero-modal-close"
+            class="absolute top-4 right-6 font-display text-nk-white/70 hover:text-nk-white text-xl tracking-widest transition-colors duration-200"
+            aria-label="Close"
+        >X</button>
+
+        <!-- Eyebrow -->
+        <p class="font-body text-sm tracking-[0.25em] text-nk-white/60 uppercase text-center mb-4">
+            Nitro K-9 &nbsp;|&nbsp; Bothell, WA
+        </p>
+
+        <!-- Headline -->
+        <h2 id="hero-modal-title" class="font-display tracking-widest leading-none text-center mb-8" style="font-size: clamp(2rem, 5vw, 3.5rem);">
+            <span class="text-nk-white">REAL </span><span class="text-nk-accent">DOG TRAINING</span><br>
+            <span class="text-nk-white">REAL </span><span class="text-nk-accent">RESULTS</span>
+        </h2>
+
+        <!-- Full body text -->
+        <div class="font-body text-base text-nk-white/80 leading-relaxed space-y-5 text-justify">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <p>Sed ut perspiciatis unde omnis iste natus error voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+            <p>Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
+        </div>
+
+        <!-- Close link -->
+        <div class="text-right mt-8">
+            <button
+                class="hero-modal-close-btn font-body text-sm tracking-[0.2em] text-nk-white/60 underline underline-offset-2 hover:text-nk-white transition-colors duration-200 uppercase"
+            >Close</button>
+        </div>
+
+    </div>
+</div>
+
+<script>
+(function () {
+    var modal    = document.getElementById('hero-read-more-modal');
+    var openBtn  = document.getElementById('hero-read-more-btn');
+    var closeBtn = document.getElementById('hero-modal-close');
+    var backdrop = document.getElementById('hero-modal-backdrop');
+    var closeBtns = document.querySelectorAll('.hero-modal-close-btn');
+
+    function openModal() {
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+        closeBtn.focus();
+    }
+
+    function closeModal() {
+        modal.classList.add('hidden');
+        document.body.style.overflow = '';
+        openBtn.focus();
+    }
+
+    if (openBtn)  openBtn.addEventListener('click', openModal);
+    if (closeBtn) closeBtn.addEventListener('click', closeModal);
+    if (backdrop) backdrop.addEventListener('click', closeModal);
+    closeBtns.forEach(function(btn) { btn.addEventListener('click', closeModal); });
+
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && !modal.classList.contains('hidden')) closeModal();
+    });
+})();
+</script>
