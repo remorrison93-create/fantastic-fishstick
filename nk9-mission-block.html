@@ -171,10 +171,13 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 56px 56px 96px;
+  padding: 52px 56px 88px;
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scrollbar-width: none;
 }
+.ms-content-pane::-webkit-scrollbar { display: none; }
 .ms-content-pane.dark  { background: var(--bg-darker); }
 .ms-content-pane.mid   { background: var(--bg-dark); }
 .ms-content-pane.warm  { background: var(--bg-warm); }
@@ -205,13 +208,15 @@
   text-transform: uppercase;
   color: var(--accent);
   display: block;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
+  flex-shrink: 0;
 }
 .ms-h1 {
   font-family: var(--font-display);
-  font-size: clamp(42px, 4.5vw, 72px);
-  line-height: 1;
-  margin-bottom: 24px;
+  font-size: clamp(36px, 3.8vw, 60px);
+  line-height: 1.02;
+  margin-bottom: 18px;
+  flex-shrink: 0;
 }
 .ms-h1.light { color: var(--text-white); }
 .ms-h1.dark-text { color: #1a1a1a; }
@@ -219,8 +224,8 @@
 
 .ms-body {
   font-size: 14px;
-  line-height: 1.85;
-  margin-bottom: 14px;
+  line-height: 1.8;
+  margin-bottom: 12px;
 }
 .ms-body.light { color: var(--text-muted); }
 .ms-body.light strong { color: rgba(255,255,255,0.85); }
@@ -231,7 +236,7 @@
   width: 40px;
   height: 3px;
   background: var(--accent);
-  margin: 20px 0;
+  margin: 14px 0;
   flex-shrink: 0;
 }
 
@@ -240,12 +245,12 @@
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  margin-top: 4px;
+  gap: 8px;
+  margin-top: 2px;
 }
 .ms-list li {
-  font-size: 14px;
-  line-height: 1.65;
+  font-size: 13px;
+  line-height: 1.6;
   padding-left: 16px;
   position: relative;
 }
@@ -266,30 +271,30 @@
 /* Callout */
 .ms-callout {
   border-left: 3px solid var(--accent);
-  padding: 14px 18px;
+  padding: 12px 16px;
   background: rgba(241,89,42,0.07);
-  margin-top: 18px;
+  margin-top: 14px;
 }
 .ms-callout p {
   font-size: 13px;
   font-style: italic;
   color: rgba(255,255,255,0.65);
-  line-height: 1.75;
+  line-height: 1.7;
 }
 
 /* Pill tags */
 .ms-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 16px;
+  gap: 7px;
+  margin-top: 12px;
 }
 .ms-tag {
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  padding: 6px 14px;
+  padding: 5px 12px;
   border: 1px solid rgba(241,89,42,0.4);
   color: var(--accent);
   background: rgba(241,89,42,0.06);
@@ -300,116 +305,117 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2px;
-  margin-top: 20px;
+  margin-top: 14px;
 }
 .ms-pillar {
   background: rgba(255,255,255,0.04);
-  padding: 20px 18px;
+  padding: 16px 16px;
   border-top: 2px solid transparent;
   transition: border-color 0.2s, background 0.2s;
 }
 .ms-pillar:hover { border-top-color: var(--accent); background: rgba(255,255,255,0.07); }
 .ms-pillar-word {
   font-family: var(--font-display);
-  font-size: 22px;
+  font-size: 20px;
   color: var(--text-white);
   display: block;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
   letter-spacing: 0.04em;
 }
 .ms-pillar p {
   font-size: 11px;
   color: rgba(255,255,255,0.4);
-  line-height: 1.6;
+  line-height: 1.5;
 }
 
 /* Destination grid (why we train) */
 .ms-dest-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin-top: 20px;
+  gap: 8px;
+  margin-top: 14px;
 }
 .ms-dest-item {
   background: rgba(255,255,255,0.06);
-  padding: 18px 16px;
+  padding: 14px 14px;
   border-bottom: 2px solid transparent;
   transition: border-color 0.2s;
 }
 .ms-dest-item:hover { border-bottom-color: var(--accent); }
 .ms-dest-item h4 {
   font-family: var(--font-display);
-  font-size: 19px;
+  font-size: 18px;
   color: var(--text-white);
   letter-spacing: 0.04em;
-  margin-bottom: 4px;
+  margin-bottom: 3px;
 }
 .ms-dest-item p {
   font-size: 11px;
   color: rgba(255,255,255,0.4);
-  line-height: 1.6;
+  line-height: 1.5;
 }
 
 /* Closing stanzas */
 .ms-stanzas {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 0;
+  margin-bottom: 4px;
 }
 .ms-stanzas p {
-  font-size: 14px;
+  font-size: 13px;
   color: rgba(255,255,255,0.65);
-  line-height: 2;
+  line-height: 1.9;
 }
-.ms-stanzas p.gap { height: 10px; }
+.ms-stanzas p.gap { height: 8px; }
 
 /* Leash lockup */
 .ms-lockup {
   border-top: 1px solid rgba(255,255,255,0.1);
   border-bottom: 1px solid rgba(255,255,255,0.1);
-  padding: 20px 0;
-  margin-top: 20px;
+  padding: 16px 0;
+  margin-top: 16px;
 }
 .ms-lockup-phrase {
   font-family: var(--font-display);
-  font-size: clamp(24px, 3vw, 40px);
+  font-size: clamp(22px, 2.6vw, 34px);
   color: var(--text-white);
   letter-spacing: 0.06em;
   display: block;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 .ms-lockup-phrase em { font-style: normal; color: var(--accent); }
 .ms-lockup p {
   font-size: 12px;
   color: rgba(255,255,255,0.45);
-  line-height: 1.75;
+  line-height: 1.7;
 }
 
 /* Hero stanzas */
 .ms-hero-stanzas {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 0;
 }
 .ms-hero-stanzas p {
-  font-size: 14px;
+  font-size: 13px;
   color: rgba(255,255,255,0.6);
-  line-height: 1.9;
+  line-height: 1.85;
 }
 .ms-hero-stanzas .gap { height: 8px; }
 .ms-welcome {
   font-family: var(--font-display);
-  font-size: clamp(32px, 3.5vw, 52px);
+  font-size: clamp(28px, 3vw, 46px);
   color: var(--text-white);
   letter-spacing: 0.04em;
   display: block;
-  margin-top: 16px;
+  margin-top: 14px;
 }
 .ms-sub {
-  font-size: 12px;
+  font-size: 11px;
   color: rgba(255,255,255,0.3);
   letter-spacing: 0.08em;
-  margin-top: 10px;
+  margin-top: 8px;
 }
 
 /* ─────────────────────────────────────────────────
@@ -460,7 +466,7 @@
   }
   .ms-img-pane { height: 40vh; }
   .ms-panel.img-left .ms-img-pane { order: -1; }
-  .ms-content-pane { padding: 40px 28px 80px; }
+  .ms-content-pane { padding: 36px 24px 72px; }
   #ms-sidenav { right: 12px; gap: 12px; }
   .ms-nav-num { font-size: 11px; }
   .ms-nav-tick { display: none; }
@@ -547,7 +553,7 @@
       <div class="ms-callout">
         <p>Dogs have an incredible ability to reveal who we are — they expose our inconsistency, reveal our patience, challenge our confidence, and mirror our anxiety.</p>
       </div>
-      <p class="ms-body light" style="margin-top:16px;">As we grow into better leaders… <strong>they become calmer followers.</strong> That transformation happens on both ends of the leash.</p>
+      <p class="ms-body light" style="margin-top:14px;">As we grow into better leaders… <strong>they become calmer followers.</strong> That transformation happens on both ends of the leash.</p>
     </div>
   </section>
 
@@ -564,7 +570,7 @@
         <li>They provide purpose where depression once lived.</li>
         <li>They help people reconnect with the world.</li>
       </ul>
-      <p class="ms-body light" style="margin-top:16px;">We've watched people regain independence after believing they'd never have it again. <strong>We've seen lives transformed.</strong></p>
+      <p class="ms-body light" style="margin-top:12px;">We've watched people regain independence after believing they'd never have it again. <strong>We've seen lives transformed.</strong></p>
     </div>
     <div class="ms-img-pane">
       <img src="https://nitrocanine.com/mystaging01/wp-content/uploads/2026/04/North-bio-Pic.png"
@@ -590,8 +596,8 @@
         <span class="ms-tag">Every stranger a threat</span>
         <span class="ms-tag">Every sound feels dangerous</span>
       </div>
-      <p class="ms-body light" style="margin-top:18px;">Our mission is helping that dog finally <strong>breathe</strong> — helping them understand they are safe, discover confidence, and enjoy life again.</p>
-      <p style="font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-top:12px;">Because every dog deserves peace.</p>
+      <p class="ms-body light" style="margin-top:12px;">Our mission is helping that dog finally <strong>breathe</strong> — helping them understand they are safe, discover confidence, and enjoy life again.</p>
+      <p style="font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-top:10px;">Because every dog deserves peace.</p>
     </div>
   </section>
 
@@ -619,7 +625,7 @@
           <p>Reading your dog before they react.</p>
         </div>
       </div>
-      <p class="ms-body light" style="margin-top:18px;"><strong>That level of partnership cannot be purchased. It must be earned.</strong></p>
+      <p class="ms-body light" style="margin-top:12px;"><strong>That level of partnership cannot be purchased. It must be earned.</strong></p>
     </div>
     <div class="ms-img-pane">
       <img src="https://nitrocanine.com/mystaging01/wp-content/uploads/2026/04/Steve-bio-Pic-3.png"
@@ -675,7 +681,7 @@
         <span class="ms-lockup-phrase">The Art of <em>the Leash</em></span>
         <p>The leash is more than a training tool — it is a bridge between two lives. Through trust, communication, leadership, and shared experience, it becomes the connection through which both dog and human grow together.</p>
       </div>
-      <p style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-top:12px;">Welcome to the journey. We're honored to walk it beside you.</p>
+      <p style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-top:10px;">Welcome to the journey. We're honored to walk it beside you.</p>
     </div>
     <div class="ms-img-pane">
       <img src="https://nitrocanine.com/mystaging01/wp-content/uploads/2026/03/steve-blade-focus.png"
