@@ -1,0 +1,873 @@
+<!-- ══════════════════════════════════════════════════════════════
+     NK9 Mission Statement Block
+     Sections: Welcome Hero · Core Beliefs · Dogs Heal Us ·
+               We Heal Dogs · The Bond · Why We Train · Mission Closing
+     ══════════════════════════════════════════════════════════════ -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ─────────────────────────────────────────────────
+   DESIGN TOKENS (mirrors site-wide tokens)
+───────────────────────────────────────────────── */
+:root {
+  --bg-dark:      #272727;
+  --bg-darker:    #111111;
+  --bg-warm:      #f1e9d2;
+  --accent:       #f1592a;
+  --text-white:   #ffffff;
+  --text-muted:   rgba(255,255,255,0.55);
+  --text-dark:    #272727;
+  --inner-max:    1120px;
+  --font-display: 'Bebas Neue', sans-serif;
+  --font-body:    'Inter', sans-serif;
+}
+
+/* ─────────────────────────────────────────────────
+   GLOBAL RESET (scoped)
+───────────────────────────────────────────────── */
+#nk9-mission * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+#nk9-mission {
+  font-family: var(--font-body);
+}
+
+/* ─────────────────────────────────────────────────
+   SHARED UTILITIES
+───────────────────────────────────────────────── */
+.ms-inner {
+  max-width: var(--inner-max);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+.ms-eyebrow {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 14px;
+}
+.ms-divider {
+  width: 48px;
+  height: 3px;
+  background: var(--accent);
+  margin: 28px 0;
+}
+.ms-divider--center {
+  margin-left: auto;
+  margin-right: auto;
+}
+.ms-rule {
+  border: none;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  margin: 0;
+}
+.ms-rule--warm {
+  border-top-color: rgba(39,39,39,0.1);
+}
+
+/* ─────────────────────────────────────────────────
+   1. WELCOME HERO
+───────────────────────────────────────────────── */
+.ms-hero {
+  background: var(--bg-darker);
+  padding: 100px 24px 90px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.ms-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(241,89,42,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.ms-hero-brand {
+  font-family: var(--font-display);
+  font-size: clamp(13px, 1.5vw, 16px);
+  letter-spacing: 0.3em;
+  color: var(--accent);
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 20px;
+}
+.ms-hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(52px, 7vw, 96px);
+  color: var(--text-white);
+  line-height: 1;
+  margin-bottom: 32px;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.ms-hero h1 em {
+  font-style: normal;
+  color: var(--accent);
+}
+.ms-hero-lead {
+  font-size: clamp(16px, 2vw, 20px);
+  color: var(--text-muted);
+  line-height: 1.8;
+  max-width: 560px;
+  margin: 0 auto 36px;
+}
+.ms-hero-stanzas {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 40px;
+}
+.ms-hero-stanzas p {
+  font-size: 16px;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.9;
+}
+.ms-hero-stanzas p.ms-hero-stanza-break {
+  height: 8px;
+}
+.ms-hero-welcome {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: clamp(36px, 5vw, 64px);
+  color: var(--text-white);
+  letter-spacing: 0.04em;
+  margin-top: 8px;
+}
+
+/* ─────────────────────────────────────────────────
+   2. WE DON'T JUST TRAIN DOGS
+───────────────────────────────────────────────── */
+.ms-beliefs {
+  background: var(--bg-dark);
+  padding: 88px 24px;
+}
+.ms-beliefs-inner {
+  max-width: var(--inner-max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+.ms-beliefs h2 {
+  font-family: var(--font-display);
+  font-size: clamp(44px, 5.5vw, 76px);
+  color: var(--text-white);
+  line-height: 1.05;
+  margin-bottom: 24px;
+}
+.ms-beliefs h2 em {
+  font-style: normal;
+  color: var(--accent);
+}
+.ms-beliefs p {
+  font-size: 15px;
+  color: var(--text-muted);
+  line-height: 1.85;
+  margin-bottom: 16px;
+}
+.ms-beliefs p strong {
+  color: rgba(255,255,255,0.85);
+}
+.ms-leash-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 8px;
+}
+.ms-leash-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  font-size: 15px;
+  color: rgba(255,255,255,0.75);
+  line-height: 1.6;
+}
+.ms-leash-list li::before {
+  content: '';
+  display: block;
+  width: 6px;
+  height: 6px;
+  background: var(--accent);
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 8px;
+}
+.ms-leash-callout {
+  border-left: 3px solid var(--accent);
+  padding: 16px 20px;
+  background: rgba(241,89,42,0.06);
+  margin-top: 28px;
+}
+.ms-leash-callout p {
+  font-size: 14px;
+  font-style: italic;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.75;
+  margin: 0;
+}
+
+/* ─────────────────────────────────────────────────
+   3. DOGS HEAL US  (warm background)
+───────────────────────────────────────────────── */
+.ms-dogs-heal {
+  background: var(--bg-warm);
+  padding: 88px 24px;
+}
+.ms-dogs-heal-inner {
+  max-width: var(--inner-max);
+  margin: 0 auto;
+}
+.ms-dogs-heal-header {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 64px;
+  align-items: end;
+  margin-bottom: 56px;
+}
+.ms-dogs-heal h2 {
+  font-family: var(--font-display);
+  font-size: clamp(48px, 6vw, 80px);
+  color: var(--text-dark);
+  line-height: 1;
+}
+.ms-dogs-heal-intro {
+  font-size: 16px;
+  color: rgba(39,39,39,0.65);
+  line-height: 1.8;
+  align-self: end;
+}
+.ms-dogs-heal-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 40px;
+}
+.ms-heal-card {
+  background: #ffffff;
+  padding: 28px 24px 32px;
+  position: relative;
+}
+.ms-heal-card::before {
+  content: '';
+  display: block;
+  height: 3px;
+  background: var(--accent);
+  margin-bottom: 20px;
+}
+.ms-heal-card h3 {
+  font-family: var(--font-display);
+  font-size: 24px;
+  color: var(--text-dark);
+  letter-spacing: 0.03em;
+  margin-bottom: 12px;
+}
+.ms-heal-card p {
+  font-size: 14px;
+  color: rgba(39,39,39,0.65);
+  line-height: 1.8;
+}
+.ms-dogs-heal-footer {
+  background: #ffffff;
+  padding: 32px 36px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+.ms-dogs-heal-footer p {
+  font-size: 14px;
+  color: rgba(39,39,39,0.65);
+  line-height: 1.85;
+}
+.ms-dogs-heal-footer p strong {
+  color: var(--text-dark);
+}
+
+/* ─────────────────────────────────────────────────
+   4. WE HEAL DOGS
+───────────────────────────────────────────────── */
+.ms-heal-dogs {
+  background: var(--bg-darker);
+  padding: 88px 24px;
+}
+.ms-heal-dogs-inner {
+  max-width: var(--inner-max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+.ms-heal-dogs h2 {
+  font-family: var(--font-display);
+  font-size: clamp(48px, 6vw, 80px);
+  color: var(--text-white);
+  line-height: 1;
+  margin-bottom: 28px;
+}
+.ms-heal-dogs p {
+  font-size: 15px;
+  color: var(--text-muted);
+  line-height: 1.85;
+  margin-bottom: 16px;
+}
+.ms-heal-dogs p strong {
+  color: rgba(255,255,255,0.9);
+}
+.ms-survival-states {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-top: 40px;
+}
+.ms-survival-state {
+  padding: 20px 24px;
+  border-left: 2px solid rgba(255,255,255,0.06);
+  transition: border-color 0.2s;
+}
+.ms-survival-state:hover { border-left-color: var(--accent); }
+.ms-survival-state h4 {
+  font-family: var(--font-display);
+  font-size: 20px;
+  color: var(--text-white);
+  letter-spacing: 0.04em;
+  margin-bottom: 6px;
+}
+.ms-survival-state p {
+  font-size: 13px;
+  color: rgba(255,255,255,0.45);
+  line-height: 1.7;
+  margin: 0;
+}
+.ms-heal-dogs-mission {
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding-top: 24px;
+  margin-top: 24px;
+}
+.ms-heal-dogs-mission p {
+  font-size: 16px;
+  font-style: italic;
+  color: rgba(255,255,255,0.75);
+  line-height: 1.75;
+  margin: 0;
+}
+.ms-heal-dogs-mission strong {
+  color: var(--accent);
+  font-style: normal;
+}
+
+/* ─────────────────────────────────────────────────
+   5. THE BOND THAT CHANGES EVERYTHING
+───────────────────────────────────────────────── */
+.ms-bond {
+  background: var(--bg-dark);
+  padding: 88px 24px;
+}
+.ms-bond-inner {
+  max-width: var(--inner-max);
+  margin: 0 auto;
+  text-align: center;
+}
+.ms-bond h2 {
+  font-family: var(--font-display);
+  font-size: clamp(48px, 6vw, 84px);
+  color: var(--text-white);
+  line-height: 1;
+  margin-bottom: 20px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.ms-bond-lead {
+  font-size: 17px;
+  color: var(--text-muted);
+  line-height: 1.8;
+  max-width: 580px;
+  margin: 0 auto 56px;
+}
+.ms-bond-pillars {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+  margin-bottom: 56px;
+}
+.ms-bond-pillar {
+  background: rgba(255,255,255,0.03);
+  padding: 36px 24px;
+  text-align: center;
+  border-top: 2px solid transparent;
+  transition: border-color 0.2s, background 0.2s;
+}
+.ms-bond-pillar:hover {
+  border-top-color: var(--accent);
+  background: rgba(255,255,255,0.055);
+}
+.ms-bond-pillar-word {
+  font-family: var(--font-display);
+  font-size: 28px;
+  color: var(--text-white);
+  display: block;
+  margin-bottom: 10px;
+  letter-spacing: 0.05em;
+}
+.ms-bond-pillar p {
+  font-size: 12px;
+  color: rgba(255,255,255,0.4);
+  line-height: 1.65;
+}
+.ms-bond-closing {
+  max-width: 640px;
+  margin: 0 auto;
+}
+.ms-bond-closing p {
+  font-size: 16px;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.85;
+  margin-bottom: 16px;
+}
+.ms-bond-closing p:last-child { margin-bottom: 0; }
+.ms-bond-closing strong {
+  color: var(--text-white);
+}
+
+/* ─────────────────────────────────────────────────
+   6. THIS IS WHY WE TRAIN
+───────────────────────────────────────────────── */
+.ms-why {
+  background: var(--bg-warm);
+  padding: 88px 24px;
+}
+.ms-why-inner {
+  max-width: var(--inner-max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 72px;
+  align-items: start;
+}
+.ms-why h2 {
+  font-family: var(--font-display);
+  font-size: clamp(44px, 5.5vw, 72px);
+  color: var(--text-dark);
+  line-height: 1.05;
+  margin-bottom: 20px;
+}
+.ms-why-intro {
+  font-size: 15px;
+  color: rgba(39,39,39,0.6);
+  line-height: 1.8;
+  margin-bottom: 32px;
+}
+.ms-vehicle-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.ms-vehicle-list li {
+  font-size: 14px;
+  color: rgba(39,39,39,0.6);
+  line-height: 1.6;
+  padding-left: 18px;
+  position: relative;
+}
+.ms-vehicle-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 9px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+.ms-vehicle-list li strong {
+  color: var(--text-dark);
+  font-weight: 700;
+}
+.ms-destination-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.ms-destination-item {
+  background: #ffffff;
+  padding: 24px 20px;
+  border-bottom: 3px solid transparent;
+  transition: border-color 0.2s;
+}
+.ms-destination-item:hover { border-bottom-color: var(--accent); }
+.ms-destination-item h4 {
+  font-family: var(--font-display);
+  font-size: 20px;
+  color: var(--text-dark);
+  letter-spacing: 0.04em;
+  margin-bottom: 8px;
+}
+.ms-destination-item p {
+  font-size: 13px;
+  color: rgba(39,39,39,0.55);
+  line-height: 1.7;
+}
+
+/* ─────────────────────────────────────────────────
+   7. OUR MISSION (closing)
+───────────────────────────────────────────────── */
+.ms-closing {
+  background: var(--bg-darker);
+  padding: 96px 24px 100px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.ms-closing::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 70% 60% at 50% 100%, rgba(241,89,42,0.07) 0%, transparent 70%);
+  pointer-events: none;
+}
+.ms-closing h2 {
+  font-family: var(--font-display);
+  font-size: clamp(52px, 7vw, 96px);
+  color: var(--text-white);
+  line-height: 1;
+  margin-bottom: 32px;
+  max-width: 840px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.ms-closing-stanzas {
+  max-width: 520px;
+  margin: 0 auto 48px;
+}
+.ms-closing-stanzas p {
+  font-size: 16px;
+  color: rgba(255,255,255,0.65);
+  line-height: 2;
+}
+.ms-closing-stanzas p.ms-gap { height: 10px; }
+.ms-leash-lockup {
+  display: inline-block;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  padding: 32px 48px;
+  margin-bottom: 48px;
+}
+.ms-leash-lockup-phrase {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 52px);
+  color: var(--text-white);
+  letter-spacing: 0.06em;
+  display: block;
+  margin-bottom: 12px;
+}
+.ms-leash-lockup-phrase em {
+  font-style: normal;
+  color: var(--accent);
+}
+.ms-leash-lockup p {
+  font-size: 14px;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.75;
+  max-width: 520px;
+  margin: 0 auto;
+}
+.ms-closing-welcome {
+  font-family: var(--font-display);
+  font-size: clamp(18px, 2.5vw, 26px);
+  color: rgba(255,255,255,0.5);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 8px;
+}
+.ms-closing-sign {
+  font-family: var(--font-display);
+  font-size: clamp(14px, 1.8vw, 18px);
+  color: var(--accent);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  display: block;
+}
+
+/* ─────────────────────────────────────────────────
+   RESPONSIVE
+───────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .ms-beliefs-inner      { grid-template-columns: 1fr; gap: 40px; }
+  .ms-dogs-heal-header   { grid-template-columns: 1fr; gap: 24px; }
+  .ms-dogs-heal-cards    { grid-template-columns: 1fr 1fr; }
+  .ms-dogs-heal-footer   { grid-template-columns: 1fr; gap: 20px; }
+  .ms-heal-dogs-inner    { grid-template-columns: 1fr; gap: 40px; }
+  .ms-bond-pillars       { grid-template-columns: 1fr 1fr; }
+  .ms-why-inner          { grid-template-columns: 1fr; gap: 40px; }
+  .ms-destination-grid   { grid-template-columns: 1fr 1fr; }
+  .ms-leash-lockup       { padding: 28px 24px; }
+}
+@media (max-width: 640px) {
+  .ms-hero               { padding: 72px 20px 64px; }
+  .ms-dogs-heal-cards    { grid-template-columns: 1fr; }
+  .ms-bond-pillars       { grid-template-columns: 1fr 1fr; gap: 2px; }
+  .ms-destination-grid   { grid-template-columns: 1fr; }
+  .ms-beliefs            { padding: 64px 20px; }
+  .ms-dogs-heal          { padding: 64px 20px; }
+  .ms-heal-dogs          { padding: 64px 20px; }
+  .ms-bond               { padding: 64px 20px; }
+  .ms-why                { padding: 64px 20px; }
+  .ms-closing            { padding: 72px 20px 80px; }
+}
+</style>
+
+<div id="nk9-mission">
+
+  <!-- ══════════════════════════════════════════════
+       1. WELCOME HERO
+       ══════════════════════════════════════════════ -->
+  <section class="ms-hero">
+    <span class="ms-hero-brand">Nitro K&#8209;9</span>
+    <h1>You Didn't Come Here Because<br>You Needed a <em>Better Dog.</em></h1>
+    <p class="ms-hero-lead">You came here because something in your life wasn't working.</p>
+    <div class="ms-hero-stanzas">
+      <p>Maybe your dog is anxious.</p>
+      <p>Maybe they're reactive.</p>
+      <p>Maybe they're aggressive.</p>
+      <p>Maybe they're fearful.</p>
+      <p class="ms-hero-stanza-break"></p>
+      <p>Maybe they're struggling to become the service dog that could one day change your life.</p>
+      <p class="ms-hero-stanza-break"></p>
+      <p>Or maybe you simply know your relationship with your dog could become something extraordinary.</p>
+    </div>
+    <p style="font-size:15px;color:rgba(255,255,255,0.45);margin-bottom:20px;">Whatever brought you here&hellip;</p>
+    <span class="ms-hero-welcome">Welcome.</span>
+    <div class="ms-divider ms-divider--center" style="margin-top:40px;"></div>
+    <p style="font-size:14px;color:rgba(255,255,255,0.35);margin-top:24px;letter-spacing:0.05em;">Because what begins today is about far more than obedience.</p>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════
+       2. WE DON'T JUST TRAIN DOGS
+       ══════════════════════════════════════════════ -->
+  <section class="ms-beliefs">
+    <div class="ms-beliefs-inner">
+      <div>
+        <span class="ms-eyebrow">Our Philosophy</span>
+        <h2>We Don't Believe<br>We're Just<br><em>Training Dogs.</em></h2>
+        <p>We're transforming relationships.</p>
+        <p>Every leash connects two nervous systems. Every emotion you carry influences your dog. Every emotion your dog carries influences you.</p>
+        <p>When one begins to heal&hellip; <strong>the other often follows.</strong></p>
+        <div class="ms-leash-callout">
+          <p>People often arrive believing their dog is the one who needs training. Sometimes that's true. But what we discover together is that dogs have an incredible ability to reveal who we are.</p>
+        </div>
+      </div>
+      <div>
+        <p style="font-size:14px;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:0.18em;font-weight:700;margin-bottom:20px;">Dogs Reveal Us</p>
+        <ul class="ms-leash-list">
+          <li>They expose our inconsistency.</li>
+          <li>They reveal our patience.</li>
+          <li>They challenge our confidence.</li>
+          <li>They mirror our anxiety.</li>
+        </ul>
+        <div class="ms-divider" style="margin-top:32px;margin-bottom:32px;"></div>
+        <p style="font-size:15px;color:rgba(255,255,255,0.7);line-height:1.85;">As we grow into better leaders&hellip; <strong style="color:#fff;">they become calmer followers.</strong></p>
+        <p style="font-size:15px;color:rgba(255,255,255,0.55);line-height:1.85;margin-top:12px;">That transformation happens on both ends of the leash.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════
+       3. DOGS HEAL US
+       ══════════════════════════════════════════════ -->
+  <section class="ms-dogs-heal">
+    <div class="ms-dogs-heal-inner">
+      <div class="ms-dogs-heal-header">
+        <div>
+          <span class="ms-eyebrow" style="color:var(--accent);">The Power of the Partnership</span>
+          <h2>Dogs<br>Heal Us.</h2>
+        </div>
+        <p class="ms-dogs-heal-intro">This is why psychiatric service dogs can change lives. They don't replace therapy or doctors&mdash;but they can become one of the most powerful partners a person has in the healing process.</p>
+      </div>
+
+      <div class="ms-dogs-heal-cards">
+        <div class="ms-heal-card">
+          <h3>Interrupt Panic</h3>
+          <p>Trained service dogs interrupt panic attacks before they escalate&mdash;providing grounding when it's needed most.</p>
+        </div>
+        <div class="ms-heal-card">
+          <h3>Build Confidence</h3>
+          <p>They create confidence where fear once existed and help people reconnect with a world that felt unsafe.</p>
+        </div>
+        <div class="ms-heal-card">
+          <h3>Restore Purpose</h3>
+          <p>They provide purpose where depression once lived&mdash;giving structure, routine, and unconditional connection.</p>
+        </div>
+      </div>
+
+      <div class="ms-dogs-heal-footer">
+        <p>We've watched clients experience breakthroughs in therapy because their service dog created enough emotional stability for healing to begin. We've watched people regain independence after believing they'd never have it again.</p>
+        <p>Sometimes, under the supervision of their physicians, clients have even <strong>reduced medications</strong> as their mental health improved through the combination of professional treatment, lifestyle changes, and the constant support of a highly trained service dog.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════
+       4. WE HEAL DOGS
+       ══════════════════════════════════════════════ -->
+  <section class="ms-heal-dogs">
+    <div class="ms-heal-dogs-inner">
+      <div>
+        <span class="ms-eyebrow">Our Commitment</span>
+        <h2>We Heal Dogs.</h2>
+        <p>People often ask&hellip; <strong>"What about the dog?"</strong></p>
+        <p>The answer is simple. Dogs deserve healing too.</p>
+        <p>Many of the dogs who walk through our doors have spent months&mdash;sometimes years&mdash;living in survival mode.</p>
+        <div class="ms-heal-dogs-mission">
+          <p>Our mission isn't simply teaching a dog to sit, heel, or down. Our mission is helping that dog finally <strong>breathe</strong>&mdash;helping them understand they are safe, discover confidence instead of fear, and enjoy life again.</p>
+          <p style="margin-top:14px;font-style:normal;color:var(--accent);font-weight:700;font-size:14px;letter-spacing:0.06em;text-transform:uppercase;">Because every dog deserves peace.</p>
+        </div>
+      </div>
+      <div>
+        <p style="font-size:12px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:16px;">What Survival Mode Looks Like</p>
+        <div class="ms-survival-states">
+          <div class="ms-survival-state">
+            <h4>Constant Anxiety</h4>
+            <p>Every walk is stressful. Every moment carries an undercurrent of dread.</p>
+          </div>
+          <div class="ms-survival-state">
+            <h4>Constant Uncertainty</h4>
+            <p>The dog never knows what to expect&mdash;so they brace for everything.</p>
+          </div>
+          <div class="ms-survival-state">
+            <h4>Constant Fear</h4>
+            <p>Every stranger is a threat. Every sound feels dangerous.</p>
+          </div>
+          <div class="ms-survival-state" style="border-left-color:var(--accent);">
+            <h4 style="color:var(--accent);">That Isn't Living.</h4>
+            <p>We're here to change that.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════
+       5. THE BOND THAT CHANGES EVERYTHING
+       ══════════════════════════════════════════════ -->
+  <section class="ms-bond">
+    <div class="ms-bond-inner">
+      <span class="ms-eyebrow">The Result of the Work</span>
+      <h2>The Bond That<br>Changes Everything</h2>
+      <p class="ms-bond-lead">Something extraordinary happens when owners fully commit to the process. Communication changes. Trust deepens. Body language becomes effortless.</p>
+
+      <div class="ms-bond-pillars">
+        <div class="ms-bond-pillar">
+          <span class="ms-bond-pillar-word">Trust</span>
+          <p>The foundation everything else is built on.</p>
+        </div>
+        <div class="ms-bond-pillar">
+          <span class="ms-bond-pillar-word">Consistency</span>
+          <p>Repeated right choices that compound over time.</p>
+        </div>
+        <div class="ms-bond-pillar">
+          <span class="ms-bond-pillar-word">Leadership</span>
+          <p>Calm, clear direction that dogs can follow without anxiety.</p>
+        </div>
+        <div class="ms-bond-pillar">
+          <span class="ms-bond-pillar-word">Observation</span>
+          <p>Reading your dog before they react&mdash;not after.</p>
+        </div>
+      </div>
+
+      <div class="ms-bond-closing">
+        <p>Many people describe it as feeling almost psychic. It isn't magic. It's the result of thousands of successful interactions creating a connection so deep that words become almost unnecessary.</p>
+        <p style="margin-top:16px;"><strong>That level of partnership cannot be purchased. It must be earned.</strong></p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════
+       6. THIS IS WHY WE TRAIN
+       ══════════════════════════════════════════════ -->
+  <section class="ms-why">
+    <div class="ms-why-inner">
+      <div>
+        <span class="ms-eyebrow" style="color:var(--accent);">Purpose Over Performance</span>
+        <h2>This Is Why We Train.</h2>
+        <p class="ms-why-intro">The obedience is important. The protection work is important. The scent work is important. The service work is important.</p>
+        <p class="ms-why-intro" style="margin-top:-8px;">But they are not the destination. <strong style="color:var(--text-dark);">They are the vehicle.</strong></p>
+        <ul class="ms-vehicle-list">
+          <li><strong>Obedience</strong> &mdash; the language of clear communication</li>
+          <li><strong>Protection Work</strong> &mdash; channeled drive and disciplined confidence</li>
+          <li><strong>Scent Work</strong> &mdash; purpose-driven engagement that fulfills the dog</li>
+          <li><strong>Service Work</strong> &mdash; the highest form of partnership</li>
+        </ul>
+      </div>
+      <div>
+        <p style="font-size:12px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:rgba(39,39,39,0.4);margin-bottom:20px;">The Destination</p>
+        <div class="ms-destination-grid">
+          <div class="ms-destination-item">
+            <h4>Stronger Dog</h4>
+            <p>Confident, stable, and ready to meet the world.</p>
+          </div>
+          <div class="ms-destination-item">
+            <h4>Stronger Human</h4>
+            <p>A clearer leader. A more patient partner.</p>
+          </div>
+          <div class="ms-destination-item">
+            <h4>Stronger Family</h4>
+            <p>Built on trust instead of fear. Communication instead of confusion.</p>
+          </div>
+          <div class="ms-destination-item">
+            <h4>Transformation</h4>
+            <p>Confidence over anxiety. Purpose over chaos.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════
+       7. OUR MISSION — CLOSING
+       ══════════════════════════════════════════════ -->
+  <section class="ms-closing">
+    <div class="ms-inner">
+      <span class="ms-eyebrow" style="margin-bottom:24px;">Our Mission</span>
+      <h2>Not Simply Obedient Dogs.<br>Extraordinary Partnerships.</h2>
+
+      <div class="ms-closing-stanzas">
+        <p>We believe dogs have the power to transform human lives.</p>
+        <p>We believe humans have the responsibility to transform the lives of their dogs.</p>
+        <p class="ms-gap"></p>
+        <p>When both happen together&hellip;</p>
+        <p>families heal.</p>
+        <p>Confidence grows.</p>
+        <p>Relationships deepen.</p>
+        <p>Lives change.</p>
+      </div>
+
+      <div class="ms-leash-lockup">
+        <span class="ms-leash-lockup-phrase">The Art of <em>the Leash</em></span>
+        <p>The leash is more than a training tool&mdash;it is a bridge between two lives. Through trust, communication, leadership, and shared experience, it becomes the connection through which both dog and human grow together.</p>
+      </div>
+
+      <span class="ms-closing-welcome">Welcome to the journey.</span>
+      <span class="ms-closing-sign">We're honored to walk it beside you. &mdash; Nitro K&#8209;9</span>
+    </div>
+  </section>
+
+</div>
+<!-- /#nk9-mission -->
